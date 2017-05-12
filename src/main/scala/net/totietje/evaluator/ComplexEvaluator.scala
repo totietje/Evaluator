@@ -27,11 +27,7 @@ object ComplexEvaluator extends Evaluator[ComplexFunction] {
   private val specialChars = "+-*/^()"
   private def isSpecialChar(char: Char) : Boolean = specialChars.contains(char)
   
-  private def readNumber(expression: String, out: Array[Token]) : Array[Token] = {
-    readNumber(expression, out, "")
-  }
-  
-  private def readNumber(expression: String, out: Array[Token], acc: String): Array[Token] = {
+  private def readNumber(expression: String, out: Array[Token], acc: String = ""): Array[Token] = {
     if (expression.isEmpty) return out :+ parseNumber(acc)
     val first = expression.head
     if (isNumeric(first)) {
@@ -57,11 +53,7 @@ object ComplexEvaluator extends Evaluator[ComplexFunction] {
     case ')' => Token.CLOSE_PAREN
   }
   
-  private def readWord(expression: String, out: Array[Token]): Array[Token] = {
-    readWord(expression, out, "")
-  }
-  
-  private def readWord(expression: String, out: Array[Token], acc: String): Array[Token] = {
+  private def readWord(expression: String, out: Array[Token], acc: String = ""): Array[Token] = {
     if (expression.isEmpty) {
       return out :+ toToken(acc)
     }
