@@ -1,7 +1,7 @@
-package net.totietje.evaluator
+package net.totietje.complex
 
-import ComplexFunction._
 import Complex._
+import ComplexFunction._
 
 import scala.math.BigDecimal
 

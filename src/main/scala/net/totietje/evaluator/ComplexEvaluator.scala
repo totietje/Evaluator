@@ -1,6 +1,8 @@
 package net.totietje.evaluator
 
+import net.totietje.complex.{Complex, ComplexFunction}
 import net.totietje.evaluator.ComplexFunctionToken._
+import net.totietje.evaluator.Token._
 
 object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
   override protected def isNumeric(char: Char): Boolean = char.isDigit || char == '.'
@@ -17,14 +19,14 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case '*' => Some(MULTIPLY, true)
     case '/' => Some(DIVIDE, true)
     case '^' => Some(POWER, true)
-    case ')' => Some(Token.CLOSE_PAREN, false)
+    case ')' => Some(CLOSE_PAREN, false)
     case _   => None
   }
   
   override protected def parseUnaryOperator(op: Char): Option[Token] = op match {
     case '+' => Some(UNARY_PLUS)
     case '-' => Some(UNARY_MINUS)
-    case '(' => Some(Token.OPEN_PAREN)
+    case '(' => Some(OPEN_PAREN)
     case _   => None
   }
   

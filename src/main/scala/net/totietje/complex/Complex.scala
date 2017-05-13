@@ -1,6 +1,6 @@
-package net.totietje.evaluator
+package net.totietje.complex
 
-import Complex._
+import net.totietje.complex.Complex._
 
 import scala.math.BigDecimal.RoundingMode
 
