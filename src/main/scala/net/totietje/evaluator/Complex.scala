@@ -47,7 +47,7 @@ case class Complex(re: Double, im: Double = 0) {
     0.5 * I * ((-I * this).exp - (I * this).exp)
   }
   
-  def asin: Complex = this + -I * (1 - this * this).sqrt.log
+  def asin: Complex = -I * (I * this + (1 - this * this).sqrt).log
   
   def cos: Complex = 0.5 * ((I * this).exp + (-I * this).exp)
   
