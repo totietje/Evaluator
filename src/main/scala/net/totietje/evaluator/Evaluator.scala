@@ -5,15 +5,15 @@ import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 abstract class Evaluator[R] {
   protected def tokenize(expression: String): Array[Token]
   
-  final def parse(expression: String): R = {
-    parse(tokenize(expression))
+  final def evaluate(expression: String): R = {
+    evaluateTokens(tokenize(expression))
   }
   
-  private def parse(tokens: Array[Token]): R = {
-    parsePostfix(ShuntingYard.toPostfix(tokens))
+  private def evaluateTokens(tokens: Array[Token]): R = {
+    evaluatePostfix(ShuntingYard.toPostfix(tokens))
   }
   
-  private def parsePostfix(tokens: Array[Token.Postfix]): R = {
+  private def evaluatePostfix(tokens: Array[Token.Postfix]): R = {
     val stack = ListBuffer[R]()
     
     def pop() : R = {
