@@ -34,8 +34,8 @@ case class Complex(re: Double, im: Double = 0) {
   def log: Complex = Complex(math.log(abs), arg)
   
   def pow(other: Complex): Complex = (this, other) match {
-    case (Zero, Zero) => NaN
-    case (Zero, _) => Zero
+    case (Zero, Complex(a, _)) if a > 0 => Zero
+    case (Zero, _) => NaN
     case (a, b) => (a.log * b).exp
   }
   
