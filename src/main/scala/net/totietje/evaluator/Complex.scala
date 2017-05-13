@@ -19,7 +19,7 @@ case class Complex(re: Double, im: Double = 0) {
   
   def /(other: Complex): Complex = {
     val top = this * other.conj
-    val bottom = other.re * other.re - other.im * other.im
+    val bottom = other.re * other.re + other.im * other.im
     Complex(top.re / bottom, top.im / bottom)
   }
   
