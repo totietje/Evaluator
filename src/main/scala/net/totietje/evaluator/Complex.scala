@@ -44,36 +44,36 @@ case class Complex(re: Double, im: Double = 0) {
   def sqrt: Complex = pow(0.5)
   
   def sin: Complex = {
-    0.5 * I * ((-I * this).exp - (I * this).exp).round
+    (0.5 * I * ((-I * this).exp - (I * this).exp)).round
   }
   
-  def asin: Complex = this + -I * (1 - this * this).sqrt.log.round
+  def asin: Complex = (this + -I * (1 - this * this).sqrt.log).round
   
-  def cos: Complex = 0.5 * ((I * this).exp + (-I * this).exp).round
+  def cos: Complex = (0.5 * ((I * this).exp + (-I * this).exp)).round
   
   def acos: Complex = (0.5 * Pi - asin).round
   
   def tan: Complex = {
     val exponential = (2 * I * this).exp
-    (exponential - 1) / (I * (exponential + 1)).round
+    ((exponential - 1) / (I * (exponential + 1))).round
   }
   
   def atan: Complex = {
     val iMult = I * this
-    0.5 * I * ((1 - iMult).log - (1 + iMult).log).round
+    (0.5 * I * ((1 - iMult).log - (1 + iMult).log)).round
   }
   
-  def sinh: Complex = -I * (I * this).sin.round
+  def sinh: Complex = (-I * (I * this).sin).round
   
-  def asinh: Complex = -I * (I * this).asin.round
+  def asinh: Complex = (-I * (I * this).asin).round
   
   def cosh: Complex = (I * this).cos.round
   
   def acosh: Complex = (this + (this + 1).sqrt * (this - 1).sqrt).log.round
   
-  def tanh: Complex = -I * (I * this).tan.round
+  def tanh: Complex = (-I * (I * this).tan).round
   
-  def atanh: Complex = -I * (I * this).atan.round
+  def atanh: Complex = (-I * (I * this).atan).round
   
   override def toString: String = this match {
     case Complex(0, 1)                              => "i"
