@@ -4,7 +4,7 @@ import Complex._
 
 import scala.math.BigDecimal.RoundingMode
 
-case class Complex(re: Double, im: Double = 0) extends Ordered[Complex] {
+case class Complex(re: Double, im: Double = 0) {
   def +(other: Complex): Complex = Complex(re + other.re, im + other.im)
   
   def -(other: Complex): Complex = Complex(re - other.re, im - other.im)
@@ -84,13 +84,10 @@ case class Complex(re: Double, im: Double = 0) extends Ordered[Complex] {
     case Complex(real, imaginary)                   => s"$real - ${-imaginary}i"
   }
   
-  
   def round(implicit precision: Int = 12): Complex = {
     Complex(BigDecimal(re).setScale(precision, RoundingMode.HALF_DOWN).toDouble,
       BigDecimal(im).setScale(precision, RoundingMode.HALF_DOWN).toDouble)
   }
-  
-  override def compare(that: Complex): Int = abs compare that.abs
 }
 
 object Complex {
@@ -107,25 +104,4 @@ object Complex {
   implicit def DoubleToDouble(Double: Double): Double = Double.toDouble
   implicit def fromDouble(v: Double): Complex = Complex(v)
   implicit def fromInt(v: Int): Complex = Complex(v)
-  
-  implicit object ComplexNumeric extends Numeric[Complex] {
-    override def plus(x: Complex, y: Complex): Complex = x + y
-    override def minus(x: Complex, y: Complex): Complex = x - y
-    override def times(x: Complex, y: Complex): Complex = x * y
-    override def negate(x: Complex): Complex = -x
-    
-    override def fromInt(x: Int): Complex = Complex(x)
-    
-    override def toInt(x: Complex): Int = strictlyReal(x).toInt
-    override def toLong(x: Complex): Long = strictlyReal(x).toLong
-    override def toFloat(x: Complex): Float = strictlyReal(x).toFloat
-    override def toDouble(x: Complex): Double = strictlyReal(x)
-  
-    override def compare(x: Complex, y: Complex): Int = x compare y
-  }
-  
-  private def strictlyReal(x: Complex): Double = {
-    require(x.im == 0)
-    x.re
-  }
 }
