@@ -55,7 +55,13 @@ case class Complex(re: Double, im: Double = 0) {
   
   def tan: Complex = {
     val exponential = (2 * I * this).exp
-    (exponential - 1) / (I * (exponential + 1))
+    val bottom = I * (exponential + 1)
+    
+    if (bottom.round == Complex(0)) {
+      NaN
+    } else {
+      (exponential - 1) / bottom
+    }
   }
   
   def atan: Complex = {
