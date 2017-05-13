@@ -2,72 +2,33 @@ package net.totietje.evaluator
 
 import net.totietje.evaluator.ComplexFunctionToken._
 
-object ComplexEvaluator extends Evaluator[ComplexFunction] {
-  override protected def tokenize(expression: String): Array[Token] = {
-    tokenize(expression, Array(), unary = true)
-  }
+object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
+  override protected def isNumeric(char: Char): Boolean = char.isDigit || char == '.'
   
-  private def tokenize(expression: String, out: Array[Token], unary: Boolean) : Array[Token] = {
-    if (expression.isEmpty) return out
-    
-    val first = expression.head
-    if (isNumeric(first)) {
-      readNumber(expression, out)
-    } else if (isSpecialChar(first)) {
-      tokenize(expression.substring(1), out :+ readSpecialChar(first, unary), first != ')')
-    } else if (first.isWhitespace) {
-      tokenize(expression.substring(1), out, unary)
-    } else {
-      readWord(expression, out)
-    }
-  }
-  
-  private def isNumeric(char: Char) : Boolean = char.isDigit || char == '.'
-  
-  private val specialChars = "+-*/^()"
-  private def isSpecialChar(char: Char) : Boolean = specialChars.contains(char)
-  
-  private def readNumber(expression: String, out: Array[Token], acc: String = ""): Array[Token] = {
-    if (expression.isEmpty) return out :+ parseNumber(acc)
-    val first = expression.head
-    if (isNumeric(first)) {
-      readNumber(expression.substring(1), out, acc + first)
-    } else {
-      tokenize(expression, out :+ parseNumber(acc), unary = false)
-    }
-  }
-  
-  private def parseNumber(str: String) : Constant = try {
+  override protected def parseNumber(str: String): Constant = try {
     Constant(str.toDouble)
   } catch {
     case _ : NumberFormatException => throw EvaluationException(s"Invalid token '$str'")
   }
   
-  private def readSpecialChar(char: Char, unary: Boolean) : Token = char match {
-    case '+' => if (unary) UNARY_PLUS else PLUS
-    case '-' => if (unary) UNARY_MINUS else MINUS
-    case '*' => MULTIPLY
-    case '/' => DIVIDE
-    case '^' => POWER
-    case '(' => Token.OPEN_PAREN
-    case ')' => Token.CLOSE_PAREN
+  override protected def parseSpecialChar(char: Char): Option[(Token, Boolean)] = char match {
+    case '+' => Some(PLUS, true)
+    case '-' => Some(MINUS, true)
+    case '*' => Some(MULTIPLY, true)
+    case '/' => Some(DIVIDE, true)
+    case '^' => Some(POWER, true)
+    case ')' => Some(Token.CLOSE_PAREN, false)
+    case _   => None
   }
   
-  private def readWord(expression: String, out: Array[Token], acc: String = ""): Array[Token] = {
-    if (expression.isEmpty) {
-      return out :+ toToken(acc)
-    }
-    
-    val first = expression.head
-    if (isNumeric(first) || isSpecialChar(first) || first.isWhitespace) {
-      val token = toToken(acc)
-      tokenize(expression, out :+ token, unary = !token.isInstanceOf[Token.Value[_]])
-    } else {
-      readWord(expression.substring(1), out, acc + first)
-    }
+  override protected def parseUnaryOperator(op: Char): Option[Token] = op match {
+    case '+' => Some(UNARY_PLUS)
+    case '-' => Some(UNARY_MINUS)
+    case '(' => Some(Token.OPEN_PAREN)
+    case _   => None
   }
   
-  private def toToken(acc: String) : Token = acc match {
+  override protected def parseWord(acc: String): Token = acc match {
     case "i"      => Constant(Complex.I)
     case "pi"|"π" => Constant(Complex.Pi)
     case "tau"    => Constant(Complex.Tau)
