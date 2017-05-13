@@ -88,8 +88,8 @@ case class Complex(re: Double, im: Double = 0) {
     case Complex(real, 0)                           => real.toString
     case Complex(real, 1)                           => s"$real + i"
     case Complex(real, -1)                          => s"$real - i"
-    case Complex(real, imaginary) if imaginary > 0  => s"$real + ${imaginary}i"
-    case Complex(real, imaginary)                   => s"$real - ${-imaginary}i"
+    case Complex(real, imaginary) if imaginary < 0  => s"$real - ${-imaginary}i"
+    case Complex(real, imaginary)                   => s"$real + ${imaginary}i"
   }
   
   def round(implicit precision: Int = 8): Complex = {
