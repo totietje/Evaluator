@@ -3,8 +3,6 @@ package net.totietje.complex
 import Complex._
 import ComplexFunction._
 
-import scala.math.BigDecimal
-
 sealed trait ComplexFunction {
   def apply(in: Map[String, Complex] = Map()) : Complex
   
@@ -229,10 +227,6 @@ object ComplexFunction {
     case Tanh(z)        => Tanh(simplify(z))
     case Atanh(z)       => Atanh(simplify(z))
     case z              => z
-  }
-  
-  object BigDecimal {
-    def unapply(decimal: BigDecimal): Option[Double] = Some(decimal.toDouble)
   }
   
   private def simplifications(function: ComplexFunction) : ComplexFunction = function match {
