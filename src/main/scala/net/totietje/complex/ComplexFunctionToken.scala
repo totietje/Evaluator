@@ -4,7 +4,7 @@ import net.totietje.complex.ComplexFunction._
 import net.totietje.evaluator.Associativity
 import net.totietje.evaluator.Token._
 
-object ComplexFunctionToken {
+private object ComplexFunctionToken {
   case class Constant(complex: Complex) extends Value[ComplexFunction] {
     override def apply(): ComplexFunction = complex
   }
