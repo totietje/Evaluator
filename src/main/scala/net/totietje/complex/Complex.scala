@@ -115,7 +115,6 @@ object Complex {
   
   val NaN = Complex(Double.NaN, Double.NaN)
   
-  implicit def DoubleToDouble(Double: Double): Double = Double.toDouble
   implicit def fromDouble(v: Double): Complex = Complex(v)
   implicit def fromInt(v: Int): Complex = Complex(v)
 }
