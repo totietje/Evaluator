@@ -82,6 +82,7 @@ case class Complex(re: Double, im: Double = 0) {
   def atanh: Complex = -I * (I * this).atan
   
   override def toString: String = this match {
+    case Complex(0, 0)                              => "0.0"
     case Complex(0, 1)                              => "i"
     case Complex(0, -1)                             => "-i"
     case Complex(0, imaginary)                      => s"${imaginary}i"
