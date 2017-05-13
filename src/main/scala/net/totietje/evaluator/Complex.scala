@@ -87,8 +87,13 @@ case class Complex(re: Double, im: Double = 0) {
   }
   
   def round(implicit precision: Int = 8): Complex = {
-    Complex(BigDecimal(re).setScale(precision, RoundingMode.HALF_DOWN).toDouble,
-      BigDecimal(im).setScale(precision, RoundingMode.HALF_DOWN).toDouble)
+    Complex(round(re), round(im))
+  }
+  
+  private def round(v: Double)(implicit precision: Int): Double = if (v.isInfinite || v.isNaN) {
+    v
+  } else {
+    BigDecimal(v).setScale(precision, RoundingMode.HALF_DOWN).toDouble
   }
 }
 
