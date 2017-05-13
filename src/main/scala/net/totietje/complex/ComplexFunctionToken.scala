@@ -1,7 +1,7 @@
-package net.totietje.evaluator
+package net.totietje.complex
 
-import net.totietje.complex.{Complex, ComplexFunction}
 import net.totietje.complex.ComplexFunction._
+import net.totietje.evaluator.Associativity
 import net.totietje.evaluator.Token._
 
 object ComplexFunctionToken {

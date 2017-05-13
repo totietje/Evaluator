@@ -1,8 +1,8 @@
-package net.totietje.evaluator
+package net.totietje.complex
 
-import net.totietje.complex.{Complex, ComplexFunction}
-import net.totietje.evaluator.ComplexFunctionToken._
+import ComplexFunctionToken._
 import net.totietje.evaluator.Token._
+import net.totietje.evaluator.{AbstractEvaluator, EvaluationException, Token}
 
 object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
   override protected def isNumeric(char: Char): Boolean = char.isDigit || char == '.'

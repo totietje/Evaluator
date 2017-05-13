@@ -1,6 +1,6 @@
 package net.totietje.evaluator
 
-import net.totietje.evaluator.ComplexFunctionToken._
+import net.totietje.complex.ComplexFunctionToken._
 
 abstract class AbstractEvaluator[R] extends Evaluator[R] {
   override final protected def tokenize(expression: String): Array[Token] = {
