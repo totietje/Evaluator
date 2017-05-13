@@ -36,7 +36,7 @@ case class Complex(re: Double, im: Double = 0) {
   def pow(other: Complex): Complex = (this, other) match {
     case (Zero, Zero) => NaN
     case (Zero, _) => Zero
-    case (a, b) => (a.log * b).exp.round
+    case (a, b) => (a.log * b).exp
   }
   
   def ~^(other: Complex): Complex = pow(other)
@@ -44,36 +44,36 @@ case class Complex(re: Double, im: Double = 0) {
   def sqrt: Complex = pow(0.5)
   
   def sin: Complex = {
-    (0.5 * I * ((-I * this).exp - (I * this).exp)).round
+    0.5 * I * ((-I * this).exp - (I * this).exp)
   }
   
-  def asin: Complex = (this + -I * (1 - this * this).sqrt.log).round
+  def asin: Complex = this + -I * (1 - this * this).sqrt.log
   
-  def cos: Complex = (0.5 * ((I * this).exp + (-I * this).exp)).round
+  def cos: Complex = 0.5 * ((I * this).exp + (-I * this).exp)
   
-  def acos: Complex = (0.5 * Pi - asin).round
+  def acos: Complex = 0.5 * Pi - asin
   
   def tan: Complex = {
     val exponential = (2 * I * this).exp
-    ((exponential - 1) / (I * (exponential + 1))).round
+    (exponential - 1) / (I * (exponential + 1))
   }
   
   def atan: Complex = {
     val iMult = I * this
-    (0.5 * I * ((1 - iMult).log - (1 + iMult).log)).round
+    0.5 * I * ((1 - iMult).log - (1 + iMult).log)
   }
   
-  def sinh: Complex = (-I * (I * this).sin).round
+  def sinh: Complex = -I * (I * this).sin
   
-  def asinh: Complex = (-I * (I * this).asin).round
+  def asinh: Complex = -I * (I * this).asin
   
-  def cosh: Complex = (I * this).cos.round
+  def cosh: Complex = (I * this).cos
   
-  def acosh: Complex = (this + (this + 1).sqrt * (this - 1).sqrt).log.round
+  def acosh: Complex = (this + (this + 1).sqrt * (this - 1).sqrt).log
   
-  def tanh: Complex = (-I * (I * this).tan).round
+  def tanh: Complex = -I * (I * this).tan
   
-  def atanh: Complex = (-I * (I * this).atan).round
+  def atanh: Complex = -I * (I * this).atan
   
   override def toString: String = this match {
     case Complex(real, 0)                           => real.toString
@@ -84,7 +84,7 @@ case class Complex(re: Double, im: Double = 0) {
     case Complex(real, imaginary)                   => s"$real - ${-imaginary}i"
   }
   
-  def round(implicit precision: Int = 12): Complex = {
+  def round(implicit precision: Int = 8): Complex = {
     Complex(BigDecimal(re).setScale(precision, RoundingMode.HALF_DOWN).toDouble,
       BigDecimal(im).setScale(precision, RoundingMode.HALF_DOWN).toDouble)
   }
