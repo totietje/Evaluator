@@ -24,7 +24,7 @@ object ComplexFunction {
   case class Variable(variable: String) extends ComplexFunction {
     def apply(in: Map[String, Complex]): Complex = in.get(variable) match {
       case Some(value) => value
-      case None => throw new Exception(s"$variable is undefined.")
+      case None => throw VariableException(s"$variable is undefined")
     }
   }
   
