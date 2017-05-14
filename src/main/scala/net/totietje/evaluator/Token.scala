@@ -2,7 +2,7 @@ package net.totietje.evaluator
 
 import collection.immutable.IndexedSeq
 
-sealed trait Token[+R]
+sealed trait Token[R]
 
 object Token {
   private[evaluator] sealed trait Postfix[R] extends Token[R]
@@ -11,9 +11,8 @@ object Token {
     def precedence : Int
   }
   
-  sealed abstract class Parenthesis extends Precedence[Any]
-  
-  abstract class Operator[R](val precedence: Int, val associativity: Associativity) extends Precedence[R] with Postfix[R] {
+  abstract class Operator[R](val precedence: Int, val associativity: Associativity)
+      extends Postfix[R] with Precedence[R] {
     def apply(left: R, right: R) : R
   }
   
@@ -27,14 +26,13 @@ object Token {
     def apply(): R
   }
   
-  object ARG_SEPARATOR extends Token[Any]
+  sealed abstract class Parenthesis[R] extends Token[R] with Precedence[R] {
+    override def precedence: Int = Int.MinValue
+  }
   
-  object OPEN_PAREN extends Parenthesis {
-    override def precedence: Int = Int.MinValue
-  }
-  object CLOSE_PAREN extends Parenthesis {
-    override def precedence: Int = Int.MinValue
-  }
+  case class ArgSeparator[R]() extends Token[R]
+  case class OpenParen[R]() extends Parenthesis[R]
+  case class CloseParen[R]() extends Parenthesis[R]
 }
 
 sealed trait Associativity

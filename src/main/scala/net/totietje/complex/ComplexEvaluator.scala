@@ -66,14 +66,14 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case '*' => Some(MULTIPLY, true)
     case '/' => Some(DIVIDE, true)
     case '^' => Some(POWER, true)
-    case ')' => Some(CLOSE_PAREN, false)
+    case ')' => Some(CloseParen(), false)
     case _   => None
   }
   
   override protected def parseUnaryOperator(op: Char): Option[Token[ComplexFunction]] = op match {
     case '+' => Some(UNARY_PLUS)
     case '-' => Some(UNARY_MINUS)
-    case '(' => Some(OPEN_PAREN)
+    case '(' => Some(OpenParen())
     case _   => None
   }
   
