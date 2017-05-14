@@ -135,9 +135,9 @@ case class Complex(re: Double, im: Double = 0) {
     *
     * This implements the formula: {{{a ^ b = e ^ (b * logₑ(a))}}}
     *
-    * When this number is 0, then:<br>
-    * - if the real part of the exponent is greater than 0, then the result will be 0<br>
-    * - otherwise, the result will be NaN.
+    * When this number is 0, then:
+    *   - if the real part of the exponent is greater than 0, then the result will be 0
+    *   - otherwise, the result will be NaN.
     *
     * Note that this is a multivalued function, so there would be multiple possible results in reality. This will
     * return the principle value, as determined by the principle value of `logₑ(a)`.
@@ -156,9 +156,9 @@ case class Complex(re: Double, im: Double = 0) {
     *
     * This implements the formula: {{{a ^ b = e ^ (b * logₑ(a))}}}
     *
-    * When this number is 0, then:<br>
-    * - if the real part of the exponent is greater than 0, then the result will be 0<br>
-    * - otherwise, the result will be NaN.
+    * When this number is 0, then:
+    *   - if the real part of the exponent is greater than 0, then the result will be 0
+    *   - otherwise, the result will be NaN.
     *
     * Note that this is a multivalued function, so there would be multiple possible results in reality. This will
     * return the principle value, as determined by the principle value of `logₑ(a)`.
