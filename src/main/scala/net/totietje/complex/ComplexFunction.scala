@@ -134,6 +134,36 @@ object ComplexFunction {
     def apply(in: Map[String, Complex]): Complex = z(in).atanh
   }
   
+  def evaluableBy(function: ComplexFunction)(implicit vars: Array[String]): Boolean = function match {
+    case Variable(name) => vars.contains(name)
+    case Constant(_)    => true
+    case Add(a, b)      => evaluableBy(a) && evaluableBy(b)
+    case Subtract(a, b) => evaluableBy(a) && evaluableBy(b)
+    case Multiply(a, b) => evaluableBy(a) && evaluableBy(b)
+    case Divide(a, b)   => evaluableBy(a) && evaluableBy(b)
+    case Power(a, b)    => evaluableBy(a) && evaluableBy(b)
+    case UnaryMinus(z)  => evaluableBy(z)
+    case Conj(z)        => evaluableBy(z)
+    case Abs(z)         => evaluableBy(z)
+    case Arg(z)         => evaluableBy(z)
+    case Im(z)          => evaluableBy(z)
+    case Re(z)          => evaluableBy(z)
+    case Sqrt(z)        => evaluableBy(z)
+    case Log(z)         => evaluableBy(z)
+    case Sin(z)         => evaluableBy(z)
+    case Asin(z)        => evaluableBy(z)
+    case Cos(z)         => evaluableBy(z)
+    case Acos(z)        => evaluableBy(z)
+    case Tan(z)         => evaluableBy(z)
+    case Atan(z)        => evaluableBy(z)
+    case Sinh(z)        => evaluableBy(z)
+    case Asinh(z)       => evaluableBy(z)
+    case Cosh(z)        => evaluableBy(z)
+    case Acosh(z)       => evaluableBy(z)
+    case Tanh(z)        => evaluableBy(z)
+    case Atanh(z)       => evaluableBy(z)
+  }
+  
   def differentiate(function: ComplexFunction)(implicit respect: String = "x") : ComplexFunction = {
     val derivative : ComplexFunction = simplify(function) match {
       case Variable(name) if name == respect => 1
