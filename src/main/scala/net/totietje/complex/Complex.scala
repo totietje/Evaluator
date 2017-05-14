@@ -111,7 +111,6 @@ case class Complex(re: Double, im: Double = 0) {
     * this number on the complex plane. The result will be between `π` and `-π`.
     *
     * NaN and infinite values are handled by `math.atan2(Double, Double)`.
-    *
     * @return
     *         The argument
     */
@@ -140,8 +139,8 @@ case class Complex(re: Double, im: Double = 0) {
     * - if the real part of the exponent is greater than 0, then the result will be 0<br>
     * - otherwise, the result will be NaN.
     *
-    * Note that this is a multivalued function, so there will be multiple possible results. This will
-    * return the principle value, as given by the principle value of `logₑ(a)`.
+    * Note that this is a multivalued function, so there would be multiple possible results in reality. This will
+    * return the principle value, as determined by the principle value of `logₑ(a)`.
     * @param that
     *             The exponent
     * @return
@@ -161,8 +160,8 @@ case class Complex(re: Double, im: Double = 0) {
     * - if the real part of the exponent is greater than 0, then the result will be 0<br>
     * - otherwise, the result will be NaN.
     *
-    * Note that this is a multivalued function, so there will be multiple possible results. This will
-    * return the principle value, as given by the principle value of `logₑ(a)`.
+    * Note that this is a multivalued function, so there would be multiple possible results in reality. This will
+    * return the principle value, as determined by the principle value of `logₑ(a)`.
     *
     * @param that
     *             The exponent
@@ -295,15 +294,10 @@ case class Complex(re: Double, im: Double = 0) {
   def atanh: Complex = -I * (I * this).atan
   
   /**
-    * Returns a string representation of this complex number.
+    * Returns a string representation of this complex number as it would be written mathematically.
     *
-    * This will return a string in the format `a + bi` except in special cases.
-    *
-    * These are:
-    * - If the real part is 0, the `a` will be omitted
-    * - If the imaginary part is 0, the `+ bi` will be omitted
-    * - If `b` is 1, it will be omitted
-    * - If `b` is negative, the format will be `a - bi`.
+    * For example, the string representation of `Complex(1, -2)` is `1 - 2i`,
+    * and the string representation of `Complex(0, -1)` is `-i`.
     * @return
     *         A string representation of this complex number
     */
@@ -369,7 +363,7 @@ object Complex {
     *
     * This is defined as the ratio of a circle's circumference to its radius.
     *
-    * It is exactly 2π and is denoted τ.
+    * It is exactly 2π and is denoted by τ.
     */
   val Tau = Complex(math.Pi * 2)
   
