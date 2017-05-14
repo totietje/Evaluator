@@ -27,12 +27,7 @@ abstract class Evaluator[R] {
           val a = pop()
           val b = pop()
           op(b, a) +=: stack
-        case func: Token.Function[R] =>
-          var popped = ArrayBuffer[R]()
-          for (_ <- 0 until func.args) {
-            popped += pop()
-          }
-          func(popped:_*) +=: stack
+        case func: Token.Function[R] => func(for (_ <- 0 until func.args) yield pop()) +=: stack
         case value : Token.Value[R] => value() +=: stack
       }
     }

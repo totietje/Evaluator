@@ -1,5 +1,7 @@
 package net.totietje.evaluator
 
+import collection.immutable.IndexedSeq
+
 sealed trait Token
 
 object Token {
@@ -18,7 +20,7 @@ object Token {
   abstract class Function[R](val args: Int) extends Precedence with Postfix {
     override def precedence: Int = Int.MaxValue
     
-    def apply(args: R*): R
+    def apply(args: IndexedSeq[R]): R
   }
   
   abstract class Value[R] extends Postfix {
