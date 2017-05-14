@@ -199,39 +199,6 @@ object ComplexFunction {
     simplify(derivative)
   }
   
-  private def toString(function: ComplexFunction) : String = function match {
-    case Variable(name) => name
-    case Constant(E)    => "e"
-    case Constant(Pi)   => "π"
-    case Constant(Tau)  => "2 * π"
-    case Constant(v)    => s"$v"
-    case Add(a, b)      => s"($a + $b)"
-    case Subtract(a, b) => s"($a - $b)"
-    case Multiply(a, b) => s"($a * $b)"
-    case Divide(a, b)   => s"($a / $b)"
-    case Power(a, b)    => s"$a ^ $b"
-    case UnaryMinus(z)  => s"-$z"
-    case Conj(z)        => s"conj($z)"
-    case Abs(z)         => s"abs($z)"
-    case Arg(z)         => s"arg($z)"
-    case Im(z)          => s"im($z)"
-    case Re(z)          => s"re($z)"
-    case Sqrt(z)        => s"sqrt($z)"
-    case Log(z)         => s"log($z)"
-    case Sin(z)         => s"sin($z)"
-    case Asin(z)        => s"asin($z)"
-    case Cos(z)         => s"cos($z)"
-    case Acos(z)        => s"acos($z)"
-    case Tan(z)         => s"tan($z)"
-    case Atan(z)        => s"atan($z)"
-    case Sinh(z)        => s"sinh($z)"
-    case Asinh(z)       => s"asinh($z)"
-    case Cosh(z)        => s"cosh($z)"
-    case Acosh(z)       => s"acosh($z)"
-    case Tanh(z)        => s"tanh($z)"
-    case Atanh(z)       => s"atanh($z)"
-  }
-  
   def simplify(function: ComplexFunction) : ComplexFunction = simplifications(function) match {
     case Add(a, b)      => simplifications(simplify(a) + simplify(b))
     case Subtract(a, b) => simplifications(simplify(a) - simplify(b))
@@ -298,5 +265,38 @@ object ComplexFunction {
     case Cosh(Acosh(z))                           => simplify(z)
     case Tanh(Atanh(z))                           => simplify(z)
     case z                                        => z
+  }
+  
+  private def toString(function: ComplexFunction) : String = function match {
+    case Variable(name) => name
+    case Constant(E)    => "e"
+    case Constant(Pi)   => "π"
+    case Constant(Tau)  => "2 * π"
+    case Constant(v)    => s"$v"
+    case Add(a, b)      => s"($a + $b)"
+    case Subtract(a, b) => s"($a - $b)"
+    case Multiply(a, b) => s"($a * $b)"
+    case Divide(a, b)   => s"($a / $b)"
+    case Power(a, b)    => s"$a ^ $b"
+    case UnaryMinus(z)  => s"-$z"
+    case Conj(z)        => s"conj($z)"
+    case Abs(z)         => s"abs($z)"
+    case Arg(z)         => s"arg($z)"
+    case Im(z)          => s"im($z)"
+    case Re(z)          => s"re($z)"
+    case Sqrt(z)        => s"sqrt($z)"
+    case Log(z)         => s"log($z)"
+    case Sin(z)         => s"sin($z)"
+    case Asin(z)        => s"asin($z)"
+    case Cos(z)         => s"cos($z)"
+    case Acos(z)        => s"acos($z)"
+    case Tan(z)         => s"tan($z)"
+    case Atan(z)        => s"atan($z)"
+    case Sinh(z)        => s"sinh($z)"
+    case Asinh(z)       => s"asinh($z)"
+    case Cosh(z)        => s"cosh($z)"
+    case Acosh(z)       => s"acosh($z)"
+    case Tanh(z)        => s"tanh($z)"
+    case Atanh(z)       => s"atanh($z)"
   }
 }
