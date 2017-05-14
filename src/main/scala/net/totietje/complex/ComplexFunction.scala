@@ -15,13 +15,13 @@ sealed trait ComplexFunction {
   
   /** Evaluates the complex function, substituting in the values for each variable as given in the map.
     *
-    * If the function contains a variable whose value is not given by the variable map, it would throw a
+    * If the function contains a variable whose value is not given by the variable map, it will throw a
     * [[net.totietje.complex.VariableException VariableException]].
     *
-    * If no map is provided, by default it will be empty, so if it encounters a variable it will throw a
+    * If no map is provided, it will be empty by default. Thus, if the function contains a variable, it will throw a
     * [[net.totietje.complex.VariableException VariableException]].
     * @param in
-    *          The variable map, `null` by default
+    *          The variable map, empty by default
     * @return
     *         The evaluated function
     * @throws net.totietje.complex.VariableException
