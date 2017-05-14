@@ -564,9 +564,11 @@ object ComplexFunction {
     case Add(Constant(a), Constant(b))            => a + b
     case Add(Constant(Zero), z)                   => simplify(z)
     case Add(z, Constant(Zero))                   => simplify(z)
+    case Add(a, b) if a == b                      => 2 * a
     case Subtract(Constant(a), Constant(b))       => a - b
     case Subtract(Constant(Zero), z)              => simplify(-z)
     case Subtract(z, Constant(Zero))              => simplify(z)
+    case Subtract(a, b) if a == b                 => 0
     case Multiply(Constant(a), Constant(b))       => a * b
     case Multiply(Constant(Zero), _)              => 0
     case Multiply(_, Constant(Zero))              => 0
@@ -574,10 +576,12 @@ object ComplexFunction {
     case Multiply(z, Constant(One))               => simplify(z)
     case Divide(Constant(a), Constant(b))         => a / b
     case Divide(z, Constant(One))                 => simplify(z)
+    case Divide(a, b) if a == b                   => 1
     case Power(Constant(a), Constant(b))          => a ~^ b
     case Power(Constant(One), _)                  => 1
     case Power(Power(z, Constant(a)),Constant(b)) => simplify(z) ~^ (a * b)
     case Power(z, Constant(One))                  => simplify(z)
+    case Power(Sqrt(z), Constant(Complex(2, 0)))  => simplify(z)
     case UnaryMinus(Constant(z))                  => -z
     case UnaryMinus(UnaryMinus(z))                => simplify(z)
     case UnaryMinus(Subtract(a, b))               => Subtract(simplify(b), simplify(a))
@@ -585,16 +589,17 @@ object ComplexFunction {
     case Abs(Constant(z))                         => z.abs
     case Arg(Constant(z))                         => z.arg
     case Sqrt(Constant(z))                        => z.sqrt
-    case Sqrt(Power(z, Constant(Complex(2, 0))))  => simplify(z)
     case Im(Constant(z))                          => z.im
     case Re(Constant(z))                          => z.re
     case Log(Constant(E))                         => 1
     case Log(Power(Constant(E), z))               => simplify(z)
     case Sin(Asin(z))                             => simplify(z)
     case Cos(Acos(z))                             => simplify(z)
+    case Divide(Sin(a), Cos(b)) if a == b         => Tan(simplify(a))
     case Tan(Atan(z))                             => simplify(z)
     case Sinh(Asinh(z))                           => simplify(z)
     case Cosh(Acosh(z))                           => simplify(z)
+    case Divide(Sinh(a), Cosh(b)) if a == b       => Tanh(simplify(a))
     case Tanh(Atanh(z))                           => simplify(z)
     case z                                        => z
   }
