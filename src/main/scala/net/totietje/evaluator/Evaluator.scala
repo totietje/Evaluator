@@ -2,9 +2,43 @@ package net.totietje.evaluator
 
 import scala.collection.mutable.ListBuffer
 
+/** An `Evaluator` is a string parser and evaluator.
+  *
+  * This class is flexible, allowing a user to define their own syntax. An example use might be to parse maths
+  * expressions, such as `(1 + 2) ^ 3`.
+  *
+  * @see [[net.totietje.complex.ComplexEvaluator ComplexEvaluator]]
+  * @tparam R
+  *           What the string should be evaluated to
+  */
 abstract class Evaluator[R] {
+  /**
+    * Converts an expression into an array of [[net.totietje.evaluator.Token Tokens]].
+    *
+    * Each token has an assigned meaning. See the [[net.totietje.evaluator.Token Token]] for more detail on
+    * how to create a token instance with a certain meaning.
+    * @param expression
+    *                   The input string to parse
+    * @return
+    *         An array of tokens containing the information needed to evaluate it
+    */
   protected def tokenize(expression: String): Array[Token[R]]
   
+  /** Parses a string.
+    *
+    * First of all, this tokenizes the string using the abstract `tokenize` method, which must be overridden
+    * by the user. This transforms the string into an array of [[net.totietje.evaluator.Token Tokens]] which represent
+    * the string in terms of its parts.
+    *
+    * Then, this evaluates the provided array of tokens as the user defines, producing a result of type `R`. For more
+    * information on how this happens, see [[net.totietje.evaluator.Token Token]].
+    * @throws net.totietje.evaluator.EvaluationException
+    *                                                    If there is a syntax error in the expression
+    * @param expression
+    *                   The input string to parse
+    * @return
+    *         The result of parsing the input
+    */
   final def evaluate(expression: String): R = {
     evaluateTokens(tokenize(expression))
   }
