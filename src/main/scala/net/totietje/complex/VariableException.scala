@@ -7,4 +7,4 @@ package net.totietje.complex
   * @param cause
   *              The cause
   */
-case class VariableException(message: String = null, cause: Throwable = null) extends Exception(msg, cause)
+case class VariableException(message: String = null, cause: Throwable = null) extends Exception(message, cause)
