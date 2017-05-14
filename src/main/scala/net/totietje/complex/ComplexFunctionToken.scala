@@ -14,19 +14,19 @@ private object ComplexFunctionToken {
     override def apply(): ComplexFunction = ComplexFunction.Variable(variable)
   }
   
-  case object PLUS extends Operator[ComplexFunction](0, Associativity.LEFT) {
+  case object PLUS extends Operator[ComplexFunction](0, Associativity.Left) {
     override def apply(left: ComplexFunction, right: ComplexFunction): ComplexFunction = left + right
   }
-  case object MINUS extends Operator[ComplexFunction](0, Associativity.LEFT) {
+  case object MINUS extends Operator[ComplexFunction](0, Associativity.Left) {
     override def apply(left: ComplexFunction, right: ComplexFunction): ComplexFunction = left - right
   }
-  case object MULTIPLY extends Operator[ComplexFunction](1, Associativity.LEFT) {
+  case object MULTIPLY extends Operator[ComplexFunction](1, Associativity.Left) {
     override def apply(left: ComplexFunction, right: ComplexFunction): ComplexFunction = left * right
   }
-  case object DIVIDE extends Operator[ComplexFunction](1, Associativity.LEFT) {
+  case object DIVIDE extends Operator[ComplexFunction](1, Associativity.Left) {
     override def apply(left: ComplexFunction, right: ComplexFunction): ComplexFunction = left / right
   }
-  case object POWER extends Operator[ComplexFunction](2, Associativity.LEFT) {
+  case object POWER extends Operator[ComplexFunction](2, Associativity.Left) {
     override def apply(left: ComplexFunction, right: ComplexFunction): ComplexFunction = left ~^ right
   }
   

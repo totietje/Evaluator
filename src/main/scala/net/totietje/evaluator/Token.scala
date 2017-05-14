@@ -48,6 +48,6 @@ object Token {
 sealed trait Associativity
 
 object Associativity {
-  case object LEFT extends Associativity
-  case object RIGHT extends Associativity
+  case object Left extends Associativity
+  case object Right extends Associativity
 }

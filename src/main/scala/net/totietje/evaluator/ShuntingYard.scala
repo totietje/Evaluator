@@ -37,7 +37,7 @@ private object ShuntingYard {
       opStack += op
     } else {
       val top = opStack.last
-      if ((top.precedence > op.precedence) || ((top.precedence == op.precedence) && op.associativity == Associativity.LEFT)) {
+      if ((top.precedence > op.precedence) || ((top.precedence == op.precedence) && op.associativity == Associativity.Left)) {
         output += opStack.remove(opStack.length - 1).asInstanceOf[Postfix[R]]
         addOp(op, opStack, output)
       } else {
