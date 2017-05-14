@@ -21,7 +21,7 @@ import net.totietje.evaluator.{AbstractEvaluator, EvaluationException, Token}
   *   - arg
   *   - abs
   *   - sqrt or √
-  *   - log
+  *   - log or ln
   *   - sin
   *   - asin
   *   - cos
@@ -87,7 +87,7 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case "arg"      => ARG
     case "abs"      => ABS
     case "sqrt"|"√" => SQRT
-    case "log"      => LOG
+    case "log"|"ln" => LOG
     case "sin"      => SIN
     case "asin"     => ASIN
     case "cos"      => COS
