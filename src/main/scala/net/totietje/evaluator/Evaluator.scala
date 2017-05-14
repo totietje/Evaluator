@@ -1,6 +1,6 @@
 package net.totietje.evaluator
 
-import scala.collection.mutable.{ArrayBuffer, ListBuffer}
+import scala.collection.mutable.ListBuffer
 
 abstract class Evaluator[R] {
   protected def tokenize(expression: String): Array[Token]
