@@ -1,7 +1,5 @@
 package net.totietje.evaluator
 
-import net.totietje.complex.ComplexFunctionToken._
-
 abstract class AbstractEvaluator[R] extends Evaluator[R] {
   override final protected def tokenize(expression: String): Array[Token] = {
     tokenize(expression, Array(), unary = true)
@@ -54,7 +52,7 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
   }
   
   protected def isNumeric(char: Char): Boolean
-  protected def parseNumber(str: String): Constant
+  protected def parseNumber(str: String): Token.Value[R]
   protected def parseSpecialChar(char: Char): Option[(Token, Boolean)]
   protected def parseUnaryOperator(op: Char): Option[Token]
   protected def parseWord(acc: String) : Token
