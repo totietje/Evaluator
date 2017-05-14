@@ -30,29 +30,29 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case _   => None
   }
   
-  override protected def parseWord(acc: String): Token = acc match {
-    case "i"      => Constant(Complex.I)
-    case "pi"|"π" => Constant(Complex.Pi)
-    case "tau"    => Constant(Complex.Tau)
-    case "e"      => Constant(Complex.E)
-    case "im"     => IM
-    case "re"     => RE
-    case "arg"    => ARG
-    case "abs"    => ABS
-    case "sqrt"   => SQRT
-    case "log"    => LOG
-    case "sin"    => SIN
-    case "asin"   => ASIN
-    case "cos"    => COS
-    case "acos"   => ACOS
-    case "tan"    => TAN
-    case "atan"   => ATAN
-    case "sinh"   => SINH
-    case "asinh"  => ASINH
-    case "cosh"   => COSH
-    case "acosh"  => ACOSH
-    case "tanh"   => TANH
-    case "atanh"  => ATANH
-    case _        => Variable(acc)
+  override protected def parseWord(acc: String): Token = acc.toLowerCase match {
+    case "i"        => Constant(Complex.I)
+    case "pi"|"π"   => Constant(Complex.Pi)
+    case "tau"|"τ"  => Constant(Complex.Tau)
+    case "e"        => Constant(Complex.E)
+    case "im"       => IM
+    case "re"       => RE
+    case "arg"      => ARG
+    case "abs"      => ABS
+    case "sqrt"|"√" => SQRT
+    case "log"      => LOG
+    case "sin"      => SIN
+    case "asin"     => ASIN
+    case "cos"      => COS
+    case "acos"     => ACOS
+    case "tan"      => TAN
+    case "atan"     => ATAN
+    case "sinh"     => SINH
+    case "asinh"    => ASINH
+    case "cosh"     => COSH
+    case "acosh"    => ACOSH
+    case "tanh"     => TANH
+    case "atanh"    => ATANH
+    case _          => Variable(acc)
   }
 }
