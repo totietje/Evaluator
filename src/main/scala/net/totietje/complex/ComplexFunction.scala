@@ -3,6 +3,8 @@ package net.totietje.complex
 import Complex._
 import ComplexFunction._
 
+import scala.language.implicitConversions
+
 sealed trait ComplexFunction {
   def apply(in: Map[String, Complex] = Map()) : Complex
   

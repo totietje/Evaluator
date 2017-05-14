@@ -4,6 +4,8 @@ import net.totietje.complex.Complex._
 
 import scala.math.BigDecimal.RoundingMode
 
+import scala.language.implicitConversions
+
 /** A class which represents a complex number, that is, a number in the form `a + bi`,
   * where i is one of the two square roots of -1.
   *
