@@ -60,7 +60,7 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case _ : NumberFormatException => throw EvaluationException(s"Invalid token '$str'")
   }
   
-  override protected def parseSpecialChar(char: Char): Option[(Token, Boolean)] = char match {
+  override protected def parseSpecialChar(char: Char): Option[(Token[ComplexFunction], Boolean)] = char match {
     case '+' => Some(PLUS, true)
     case '-' => Some(MINUS, true)
     case '*' => Some(MULTIPLY, true)
@@ -70,14 +70,14 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case _   => None
   }
   
-  override protected def parseUnaryOperator(op: Char): Option[Token] = op match {
+  override protected def parseUnaryOperator(op: Char): Option[Token[ComplexFunction]] = op match {
     case '+' => Some(UNARY_PLUS)
     case '-' => Some(UNARY_MINUS)
     case '(' => Some(OPEN_PAREN)
     case _   => None
   }
   
-  override protected def parseWord(acc: String): Token = acc.toLowerCase match {
+  override protected def parseWord(acc: String): Token[ComplexFunction] = acc.toLowerCase match {
     case "i"        => Constant(Complex.I)
     case "pi"|"π"   => Constant(Complex.Pi)
     case "tau"|"τ"  => Constant(Complex.Tau)

@@ -3,17 +3,17 @@ package net.totietje.evaluator
 import scala.collection.mutable.ListBuffer
 
 abstract class Evaluator[R] {
-  protected def tokenize(expression: String): Array[Token]
+  protected def tokenize(expression: String): Array[Token[R]]
   
   final def evaluate(expression: String): R = {
     evaluateTokens(tokenize(expression))
   }
   
-  private def evaluateTokens(tokens: Array[Token]): R = {
+  private def evaluateTokens(tokens: Array[Token[R]]): R = {
     evaluatePostfix(ShuntingYard.toPostfix(tokens))
   }
   
-  private def evaluatePostfix(tokens: Array[Token.Postfix]): R = {
+  private def evaluatePostfix(tokens: Array[Token.Postfix[R]]): R = {
     val stack = ListBuffer[R]()
     
     def pop() : R = {

@@ -1,11 +1,11 @@
 package net.totietje.evaluator
 
 abstract class AbstractEvaluator[R] extends Evaluator[R] {
-  override final protected def tokenize(expression: String): Array[Token] = {
+  override final protected def tokenize(expression: String): Array[Token[R]] = {
     tokenize(expression, Array(), unary = true)
   }
   
-  private def tokenize(expression: String, out: Array[Token], unary: Boolean) : Array[Token] = {
+  private def tokenize(expression: String, out: Array[Token[R]], unary: Boolean) : Array[Token[R]] = {
     if (expression.isEmpty) return out
     
     val first = expression.head
@@ -27,7 +27,7 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
     }
   }
   
-  private def readNumber(expression: String, out: Array[Token], acc: String = ""): Array[Token] = {
+  private def readNumber(expression: String, out: Array[Token[R]], acc: String = ""): Array[Token[R]] = {
     if (expression.isEmpty) return out :+ parseNumber(acc)
     val first = expression.head
     if (isNumeric(first)) {
@@ -37,7 +37,7 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
     }
   }
   
-  private def readWord(expression: String, out: Array[Token], acc: String = ""): Array[Token] = {
+  private def readWord(expression: String, out: Array[Token[R]], acc: String = ""): Array[Token[R]] = {
     if (expression.isEmpty) {
       return out :+ parseWord(acc)
     }
@@ -45,7 +45,7 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
     val first = expression.head
     if (isNumeric(first) || parseSpecialChar(first).isDefined || parseUnaryOperator(first).isDefined || first.isWhitespace) {
       val token = parseWord(acc)
-      tokenize(expression, out :+ token, unary = !token.isInstanceOf[Token.Value[_]])
+      tokenize(expression, out :+ token, unary = !token.isInstanceOf[Token.Value[R]])
     } else {
       readWord(expression.substring(1), out, acc + first)
     }
@@ -53,7 +53,7 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
   
   protected def isNumeric(char: Char): Boolean
   protected def parseNumber(str: String): Token.Value[R]
-  protected def parseSpecialChar(char: Char): Option[(Token, Boolean)]
-  protected def parseUnaryOperator(op: Char): Option[Token]
-  protected def parseWord(acc: String) : Token
+  protected def parseSpecialChar(char: Char): Option[(Token[R], Boolean)]
+  protected def parseUnaryOperator(op: Char): Option[Token[R]]
+  protected def parseWord(acc: String) : Token[R]
 }
