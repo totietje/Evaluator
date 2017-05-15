@@ -52,9 +52,9 @@ import net.totietje.evaluator.{AbstractEvaluator, EvaluationException, Token}
   * of accuracy.
   */
 object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
-  override protected def isNumeric(char: Char): Boolean = char.isDigit || char == '.'
+  override protected def isValueChar(char: Char): Boolean = char.isDigit || char == '.'
   
-  override protected def parseNumber(str: String): Value[ComplexFunction] = try {
+  override protected def parseValue(str: String): Value[ComplexFunction] = try {
     Constant(str.toDouble)
   } catch {
     case _ : NumberFormatException => throw EvaluationException(s"Invalid token '$str'")
