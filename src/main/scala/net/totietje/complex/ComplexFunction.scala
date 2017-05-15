@@ -564,11 +564,13 @@ object ComplexFunction {
     case Add(Constant(a), Constant(b))            => a + b
     case Add(Constant(Zero), z)                   => simplify(z)
     case Add(z, Constant(Zero))                   => simplify(z)
-    case Add(a, b) if a == b                      => 2 * a
+    case Add(a, b) if a == b                      => 2 * simplify(a)
+    case Add(a, b) if a == -b                     => 0
     case Subtract(Constant(a), Constant(b))       => a - b
     case Subtract(Constant(Zero), z)              => simplify(-z)
     case Subtract(z, Constant(Zero))              => simplify(z)
     case Subtract(a, b) if a == b                 => 0
+    case Subtract(a, b) if a == -b                => 2 * simplify(a)
     case Multiply(Constant(a), Constant(b))       => a * b
     case Multiply(Constant(Zero), _)              => 0
     case Multiply(_, Constant(Zero))              => 0
