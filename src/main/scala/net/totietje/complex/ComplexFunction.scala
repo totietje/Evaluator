@@ -569,6 +569,7 @@ object ComplexFunction {
     case Subtract(Constant(a), Constant(b))       => a - b
     case Subtract(Constant(Zero), z)              => simplify(-z)
     case Subtract(z, Constant(Zero))              => simplify(z)
+    case Subtract(a, UnaryMinus(b))               => simplify(a + b)
     case Subtract(a, b) if a == b                 => 0
     case Subtract(a, b) if a == -b                => 2 * simplify(a)
     case Multiply(Constant(a), Constant(b))       => a * b
@@ -578,7 +579,6 @@ object ComplexFunction {
     case Multiply(z, Constant(One))               => simplify(z)
     case Divide(Constant(a), Constant(b))         => a / b
     case Divide(z, Constant(One))                 => simplify(z)
-    case Divide(a, b) if a == b                   => 1
     case Power(Constant(a), Constant(b))          => a ~^ b
     case Power(Constant(One), _)                  => 1
     case Power(Power(z, Constant(a)),Constant(b)) => simplify(z) ~^ (a * b)
