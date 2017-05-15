@@ -23,7 +23,7 @@ object Token {
     * expression `3 + 4`, `+` is an operator that takes in the arguments `3` and `4`.
     *
     * Operators also have `precedence`. Operators with higher precedence are evaluated first. For example,
-    * the expression `3 + 4 ^ 2`, is interpreted as `3 + (4 ^ 2)` because the `^` operator has higher precedence than
+    * the expression `3 + 4 * 2`, is interpreted as `3 + (4 * 2)` because the `*` operator has higher precedence than
     * the `+` operator.
     * @param precedence
     *                   The precedence of this operator. This cannot be `Int.MinValue` or `Int.MaxValue`,
@@ -54,7 +54,7 @@ object Token {
     * separated by the [[net.totietje.evaluator.Token.ArgSeparator ArgSeparator]] token.
     *
     * For example, in `sin(4)`, `sin` is a function that accepts one argument. Similarly, in `max(3, 4)`, `max` is
-    * a function that accepts two arguments, and `,` is an argument separator.
+    * a function that accepts two arguments, and '`,`' is an argument separator.
     * @param args
     *             The number of arguments this function accepts
     * @tparam R
@@ -146,8 +146,9 @@ object Token {
   * Operators can be either left associative or right associative. This indicated the order in which operators
   * of the same precedence are evaluated in the absence of parentheses - from left to right or from right to left.
   *
-  * For example, the `/` operator is left associative. Thus, `2 / 2 / 2` represents `(2 / 2) / 2`. However, the `^`
-  * operator is right associative. Thus, `2 ^ 2 ^ 2` represents `2 ^ (2 ^ 2)`.
+  * For example, the `/` operator is left associative, so {{{2 / 2 / 2 = (2 / 2) / 2}}}
+  *
+  * However, the `&#94;` operator is right associative, so {{{2 ^ 2 ^ 2 = 2 ^ (2 ^ 2)}}}
   */
 sealed trait Associativity
 

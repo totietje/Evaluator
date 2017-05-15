@@ -217,7 +217,7 @@ case class Complex(re: Double, im: Double = 0) {
     *
     * This implements the formula: {{{tan(z) = i(1 - e^(2iz)) / (e^(2iz) + 1)}}}
     *
-    * This will return NaN where the tan function is undefined, which is where {{{e^(2iz) + 1 = 0}}}
+    * This will return NaN where the tan function is undefined, which is where: {{{e^(2iz) + 1 = 0}}}
     * @return
     *         `tan(this)`
     */
