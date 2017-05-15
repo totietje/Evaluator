@@ -3,55 +3,53 @@ package net.totietje.evaluator
 /** A skeletal implementation of the [[net.totietje.evaluator.Evaluator Evaluator]] class to avoid duplication
   * of common logic.
   *
-  * This class is applicable if, and only if, for each character it is unambiguous whether it is part of a value,
-  * word, or special character. That is, every character can appear no more than once as a value, word, or special
-  * character.
-  *
-  * A 'value' here is a string of characters that represent a value token. For example, `1` is a value, as is `2.3`.
-  * Constants are ''not'' values, instead, they are words.
+  * This class is applicable if, and only if, for each character it is unambiguous whether it is part of a
+  * word or special character. That is, every character can be either a special character, or part of a word, but not
+  * both.
   *
   * A 'special character' here is a standalone character that has a special meaning. Special characters cannot be part
-  * of values or words. For example, `+` is a special character.
+  * of values or words. For example, `+` would be a special character.
   *
-  * A 'word' here is a meaningful string of characters that do not contain any whitespace, special characters, or value
-  * characters. For example, the constant `pi` is a word, as are functions such as `sin`.
+  * A 'word' here is a meaningful string of characters that do not contain any whitespace or special characters.
+  * For example, the constant `pi` is a word, as are functions such as `sin`. Words cannot contain special characters
+  * or they could be mistaken for two words - the word `a+b` would be split into `a`, `+`, and `b`.
   * @tparam R
   *           What the string should be evaluated to
   */
 abstract class AbstractEvaluator[R] extends Evaluator[R] {
+  /** Transforms an expression into a list of tokens.
+    * @param expression
+    *                   The input string to parse
+    * @return
+    *         An array of tokens containing the information needed to evaluate it
+    */
   override final protected def tokenize(expression: String): Array[Token[R]] = {
-    tokenize(expression, Array(), unary = true)
+    tokenize(expression, Array(), expectingValue = true)
   }
   
-  private def tokenize(expression: String, out: Array[Token[R]], unary: Boolean) : Array[Token[R]] = {
+  private def tokenize(expression: String, out: Array[Token[R]], expectingValue: Boolean) : Array[Token[R]] = {
     if (expression.isEmpty) return out
     
     val first = expression.head
     
     if (first.isWhitespace) {
-      tokenize(expression.substring(1), out, unary)
-    } else if (isValueChar(first)) {
-      readValue(expression, out)
-    } else if (unary) {
-      parseUnaryOperator(first) match {
-        case Some(op) => tokenize(expression.substring(1), out :+ op, unary = true)
-        case None => readWord(expression, out)
+      tokenize(expression.substring(1), out, expectingValue)
+    } else if (expectingValue) {
+      parseAfterOperatorChar(first) match {
+        case Some(op) => tokenize(expression.substring(1), out :+ op, expectingValue = true)
+        case None => parseSpecialChar(first) match {
+          case Some(_) => throw EvaluationException(s"Char '$first' unexpected")
+          case None => readWord(expression, out)
+        }
       }
     } else {
       parseSpecialChar(first) match {
         case Some((token, nextUnary)) => tokenize(expression.substring(1), out :+ token, nextUnary)
-        case None => readWord(expression, out)
+        case None => parseAfterOperatorChar(first) match {
+          case Some(_) => throw EvaluationException(s"Char '$first' unexpected")
+          case None => readWord(expression, out)
+        }
       }
-    }
-  }
-  
-  private def readValue(expression: String, out: Array[Token[R]], acc: String = ""): Array[Token[R]] = {
-    if (expression.isEmpty) return out :+ parseValue(acc)
-    val first = expression.head
-    if (isValueChar(first)) {
-      readValue(expression.substring(1), out, acc + first)
-    } else {
-      tokenize(expression, out :+ parseValue(acc), unary = false)
     }
   }
   
@@ -61,31 +59,13 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
     }
     
     val first = expression.head
-    if (isValueChar(first) || parseSpecialChar(first).isDefined || parseUnaryOperator(first).isDefined || first.isWhitespace) {
+    if (parseSpecialChar(first).isDefined || parseAfterOperatorChar(first).isDefined || first.isWhitespace) {
       val token = parseWord(acc)
-      tokenize(expression, out :+ token, unary = !token.isInstanceOf[Token.Value[R]])
+      tokenize(expression, out :+ token, expectingValue = !token.isInstanceOf[Token.Value[R]])
     } else {
       readWord(expression.substring(1), out, acc + first)
     }
   }
-  
-  /** Determines whether the input is part of a value.
-    * @param char
-    *             The input character
-    * @return
-    *         Whether the input is part of a value
-    */
-  protected def isValueChar(char: Char): Boolean
-  
-  /** Parses a string of value characters.
-    * @throws net.totietje.evaluator.EvaluationException
-    *                                                    If the input string is not a valid value
-    * @param str
-    *            A string containing only value characters
-    * @return
-    *         The value of the string
-    */
-  protected def parseValue(str: String): Token.Value[R]
   
   /** Determines what special character the input is, if any.
     * @param char
@@ -97,18 +77,23 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
     */
   protected def parseSpecialChar(char: Char): Option[(Token[R], Boolean)]
   
-  /** Determines what unary operator the input is, if any.
+  /** Determines what token, if any, the input is, given that it comes after an operator, or at the start of the
+    * expression.
     *
-    * A unary operator, for the purpose of this function, is any char which follows another operator, as opposed
-    * to a value. Thus, `(` is a unary operator. A character can be both a unary operator and a special character,
-    * however, a distinction must be drawn in terms of its token ouput.
+    * Unary operators must be defined here, as they come after operators. The unary operator token must be
+    * a [[net.totietje.evaluator.Token.Function Function]] token. A character can be both a binary operator (one
+    * that works on two operands) and a unary operator (one that works on one operand), however, they must have
+    * distinct tokens.
+    *
+    * Open parentheses also belong here, as they come after operators (for example, `2 * (3 + 4)`). However, close
+    * parentheses do not, they belong in the `parseSpecialChar` method.
     * @param op
-    *           A possible unary operator
+    *           A character that follows an operator
     * @return
-    *         `None` if the input is not a unary operator, `Some(Token)` if it is. The token
-    *         is be the token representation of the character.
+    *         `None` if the input is not a special character that follows an operator, `Some(Token)` if it is. The
+    *         token is the token representation of the character.
     */
-  protected def parseUnaryOperator(op: Char): Option[Token[R]]
+  protected def parseAfterOperatorChar(op: Char): Option[Token[R]]
   
   /** Parses a possible word.
     * @throws net.totietje.evaluator.EvaluationException

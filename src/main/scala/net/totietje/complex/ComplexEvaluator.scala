@@ -2,7 +2,7 @@ package net.totietje.complex
 
 import ComplexFunctionToken._
 import net.totietje.evaluator.Token._
-import net.totietje.evaluator.{AbstractEvaluator, EvaluationException, Token}
+import net.totietje.evaluator.{AbstractEvaluator, Token}
 
 /** An [[net.totietje.evaluator.Evaluator Evaluator]] which parses an expression as a
   * [[net.totietje.complex.ComplexFunction ComplexFunction]].
@@ -52,13 +52,6 @@ import net.totietje.evaluator.{AbstractEvaluator, EvaluationException, Token}
   * of accuracy.
   */
 object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
-  override protected def isValueChar(char: Char): Boolean = char.isDigit || char == '.'
-  
-  override protected def parseValue(str: String): Value[ComplexFunction] = try {
-    Constant(str.toDouble)
-  } catch {
-    case _ : NumberFormatException => throw EvaluationException(s"Invalid token '$str'")
-  }
   
   override protected def parseSpecialChar(char: Char): Option[(Token[ComplexFunction], Boolean)] = char match {
     case '+' => Some(PLUS, true)
@@ -70,14 +63,14 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case _   => None
   }
   
-  override protected def parseUnaryOperator(op: Char): Option[Token[ComplexFunction]] = op match {
+  override protected def parseAfterOperatorChar(op: Char): Option[Token[ComplexFunction]] = op match {
     case '+' => Some(UNARY_PLUS)
     case '-' => Some(UNARY_MINUS)
     case '(' => Some(OpenParen())
     case _   => None
   }
   
-  override protected def parseWord(acc: String): Token[ComplexFunction] = acc.toLowerCase match {
+  override protected def parseWord(word: String): Token[ComplexFunction] = word.toLowerCase match {
     case "i"        => Constant(Complex.I)
     case "pi"|"π"   => Constant(Complex.Pi)
     case "tau"|"τ"  => Constant(Complex.Tau)
@@ -100,6 +93,10 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case "acosh"    => ACOSH
     case "tanh"     => TANH
     case "atanh"    => ATANH
-    case _          => Variable(acc)
+    case _          => try {
+      Constant(word.toDouble)
+    } catch {
+      case _: NumberFormatException => Variable(word)
+    }
   }
 }
