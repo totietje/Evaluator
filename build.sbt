@@ -12,8 +12,6 @@ licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.
 
 credentials += Credentials(Path.userHome / ".bintray" / ".credentials")
 
-crossPaths := false
-
 publishMavenStyle := true
 name in bintray := "Evaluator"
 version in bintray := "1.0.0"
