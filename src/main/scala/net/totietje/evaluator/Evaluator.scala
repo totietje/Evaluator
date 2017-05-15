@@ -17,6 +17,8 @@ abstract class Evaluator[R] {
     *
     * Each token has an assigned meaning. See the [[net.totietje.evaluator.Token Token]] for more detail on
     * how to create a token instance with a certain meaning.
+    * @throws net.totietje.evaluator.EvaluationException
+    *                                                    If there is an invalid token
     * @param expression
     *                   The input string to parse
     * @return
