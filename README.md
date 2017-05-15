@@ -63,16 +63,16 @@ object BooleanEvaluator extends AbstractEvaluator[Boolean] {
   override protected def parseSpecialChar(char: Char): Option[(Token[Boolean], Boolean)] = char match {
     case '&' => Some(And, true)
     case '|' => Some(Or, true)
-    //OpenParen case class provided by Token
-    case '(' => Some(OpenParen(), false)
+    //CloseParen case class provided by Token
+    case ')' => Some(CloseParen(), false)
     case _   => None
   }
   
   //Unary operators go here, as they are found after operators
   override protected def parseAfterOperatorChar(op: Char): Option[Token[Boolean]] = {
     case '!' => Some(Not)
-    //CloseParen case class provided by token
-    case ')' => Some(CloseParen())
+    //OpenParen case class provided by token
+    case '(' => Some(OpenParen())
     case _   => None
   }
   
