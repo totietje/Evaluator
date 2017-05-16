@@ -58,16 +58,16 @@ import net.totietje.evaluator.Token._
 import net.totietje.evaluator.{EvaluationException, AbstractEvaluator, Token}
 
 object BooleanEvaluator extends AbstractEvaluator[Boolean] {
-  override protected def parseOtherChar(char: Char): Option[Token[Boolean]] = char match {
-    case '!' => Some(Not)  
-    case '(' => Some(OpenParen()) //OpenParen case class provided by Token
-    case _   => None
-  }
-  
   override protected def parseAfterValueChar(op: Char): Option[Token[Boolean]] = op match {
     case '&' => Some(And)
     case '|' => Some(Or)
     case ')' => Some(CloseParen()) //CloseParen case class provided by Token
+    case _   => None
+  }
+
+  override protected def parseOtherChar(char: Char): Option[Token[Boolean]] = char match {
+    case '!' => Some(Not)  
+    case '(' => Some(OpenParen()) //OpenParen case class provided by Token
     case _   => None
   }
   
