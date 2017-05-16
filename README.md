@@ -69,7 +69,7 @@ object BooleanEvaluator extends AbstractEvaluator[Boolean] {
   }
   
   //Unary operators go here, as they are found after operators
-  override protected def parseAfterOperatorChar(op: Char): Option[Token[Boolean]] = {
+  override protected def parseAfterOperatorChar(char: Char): Option[Token[Boolean]] = char {
     case '!' => Some(Not)
     //OpenParen case class provided by token
     case '(' => Some(OpenParen())
