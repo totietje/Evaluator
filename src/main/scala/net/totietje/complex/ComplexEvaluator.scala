@@ -7,7 +7,7 @@ import net.totietje.evaluator.{AbstractEvaluator, Token}
 /** An [[net.totietje.evaluator.Evaluator Evaluator]] which parses an expression as a
   * [[net.totietje.complex.ComplexFunction ComplexFunction]].
   *
-  * This allows the basic operators `+`, `-`, `*`, `/` and `^` and the use of brackets.
+  * This allows the basic operators `+`, `-`, `*`, `/` and `&#94;` and the use of brackets.
   *
   * The following strings are treated as constants:
   *   - i
