@@ -509,10 +509,10 @@ information on how this happens, see <a href="../evaluator/Token.html" class="ex
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="net.totietje.complex.ComplexEvaluator#parseAfterOperatorChar" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="parseAfterOperatorChar(op:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]"></a><a id="parseAfterOperatorChar(Char):Option[Token[ComplexFunction]]"></a>
+    </li><li name="net.totietje.complex.ComplexEvaluator#parseAfterValueChar" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="parseAfterValueChar(char:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]"></a><a id="parseAfterValueChar(Char):Option[Token[ComplexFunction]]"></a>
       <span class="permalink">
-      <a href="../../../net/totietje/complex/ComplexEvaluator$.html#parseAfterOperatorChar(op:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]" title="Permalink">
+      <a href="../../../net/totietje/complex/ComplexEvaluator$.html#parseAfterValueChar(char:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -521,39 +521,40 @@ information on how this happens, see <a href="../evaluator/Token.html" class="ex
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">parseAfterOperatorChar</span><span class="params">(<span name="op">op: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>]]</span>
+        <span class="name">parseAfterValueChar</span><span class="params">(<span name="char">char: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>]]</span>
       </span>
       
-      <p class="shortcomment cmt">Determines what token, if any, the input is, given that it comes after an operator, or at the start of the
-expression.</p><div class="fullcomment"><div class="comment cmt"><p>Determines what token, if any, the input is, given that it comes after an operator, or at the start of the
-expression.</p><p>Unary operators must be defined here, as they come after operators. The unary operator token must be
+      <p class="shortcomment cmt">Determines if the character represents a token that comes after a value or close parenthesis.</p><div class="fullcomment"><div class="comment cmt"><p>Determines if the character represents a token that comes after a value or close parenthesis.</p><p>Operators belong here, as they come after values (for example, in <code>2 + 3</code> the <code>+</code> comes after the <code>2</code>).
+Close parentheses also belong here, as do argument separators.</p><p>In order to determine if a special character belongs here, ask yourself 'Would it make sense after a constant?'.
+If the answer is yes, it belongs here.</p></div><dl class="paramcmts block"><dt class="param">char</dt><dd class="cmt"><p>
+            A character in the expression being parsed</p></dd><dt>returns</dt><dd class="cmt"><p>
+        <code>None</code> if the input is not a special character, or the character does not belong after a value.
+        <code>Some(Token)</code> otherwise, where the token represents the character's purpose.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.complex.ComplexEvaluator">ComplexEvaluator</a> → <a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></dd></dl></div>
+    </li><li name="net.totietje.complex.ComplexEvaluator#parseOtherChar" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="parseOtherChar(op:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]"></a><a id="parseOtherChar(Char):Option[Token[ComplexFunction]]"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexEvaluator$.html#parseOtherChar(op:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">parseOtherChar</span><span class="params">(<span name="op">op: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>]]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Determines if the character represents a token that 1) comes after an operator, 2) comes after a function,
+3) follows an open parenthesis, or 4) is at the start of an expression.</p><div class="fullcomment"><div class="comment cmt"><p>Determines if the character represents a token that 1) comes after an operator, 2) comes after a function,
+3) follows an open parenthesis, or 4) is at the start of an expression.
+start of an expression.</p><p>Unary operators must be defined here, as they come after operators. The unary operator token must be
 a <a href="../evaluator/Token$$Function.html" class="extype" name="net.totietje.evaluator.Token.Function">Function</a> token. A character can be both a binary operator (one
 that works on two operands) and a unary operator (one that works on one operand), however, they must have
-distinct tokens.</p><p>Open parentheses also belong here, as they come after operators (for example, <code>2 * (3 + 4)</code>). However, close
-parentheses do not, they belong in the <code>parseSpecialChar</code> method.</p></div><dl class="paramcmts block"><dt class="param">op</dt><dd class="cmt"><p>
-          A character that follows an operator</p></dd><dt>returns</dt><dd class="cmt"><p>
-        <code>None</code> if the input is not a special character that follows an operator, <code>Some(Token)</code> if it is. The
-        token is the token representation of the character.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.complex.ComplexEvaluator">ComplexEvaluator</a> → <a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></dd></dl></div>
-    </li><li name="net.totietje.complex.ComplexEvaluator#parseSpecialChar" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="parseSpecialChar(char:Char):Option[(net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction],Boolean)]"></a><a id="parseSpecialChar(Char):Option[(Token[ComplexFunction],Boolean)]"></a>
-      <span class="permalink">
-      <a href="../../../net/totietje/complex/ComplexEvaluator$.html#parseSpecialChar(char:Char):Option[(net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction],Boolean)]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parseSpecialChar</span><span class="params">(<span name="char">char: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[(<a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>], <span class="extype" name="scala.Boolean">Boolean</span>)]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Determines what special character the input is, if any.</p><div class="fullcomment"><div class="comment cmt"><p>Determines what special character the input is, if any.</p></div><dl class="paramcmts block"><dt class="param">char</dt><dd class="cmt"><p>
-            A possible special character</p></dd><dt>returns</dt><dd class="cmt"><p>
-        <code>None</code> if the input is not a special character, <code>Some(Token, Boolean)</code> if it is. The token
-        is be the token representation of the character, and the boolean is whether this character was an
-        operator.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.complex.ComplexEvaluator">ComplexEvaluator</a> → <a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></dd></dl></div>
+distinct tokens.</p><p>Open parentheses also belong here, as they come after operators (for example, <code>2 * (3 + 4)</code>) or functions
+(<code>sin(2)</code>). However, close parentheses do not, instead, they belong in the <code>parseAfterValueChar</code> method.</p><p>In order to determine if a special character belongs here, ask yourself 'Would it make sense at the start of
+an expression?' If the answer is yes, it belongs here.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
+        <code>None</code> if the input is not a special character, or does not belong in the specified positions.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.complex.ComplexEvaluator">ComplexEvaluator</a> → <a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></dd></dl></div>
     </li><li name="net.totietje.complex.ComplexEvaluator#parseWord" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="parseWord(word:String):net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]"></a><a id="parseWord(String):Token[ComplexFunction]"></a>
       <span class="permalink">

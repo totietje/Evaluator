@@ -288,7 +288,7 @@ of common logic." href="AbstractEvaluator.html">
 of common logic.</p><div class="fullcomment"><div class="comment cmt"><p>A skeletal implementation of the <a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a> class to avoid duplication
 of common logic.</p><p>This class is applicable if, and only if, for each character it is unambiguous whether it is part of a
 word or special character. That is, every character can be either a special character, or part of a word, but not
-both.</p><p>A 'special character' here is a standalone character that has a special meaning. Special characters cannot be part
+both. Furthermore, neither special characters not words can contain whitespace.</p><p>A 'special character' here is a standalone character that has a special meaning. Special characters cannot be part
 of values or words. For example, <code>+</code> would be a special character.</p><p>A 'word' here is a meaningful string of characters that do not contain any whitespace or special characters.
 For example, the constant <code>pi</code> is a word, as are functions such as <code>sin</code>. Words cannot contain special characters
 or they could be mistaken for two words - the word <code>a+b</code> would be split into <code>a</code>, <code>+</code>, and <code>b</code>.</p></div><dl class="paramcmts block"><dt class="tparam">R</dt><dd class="cmt"><p>

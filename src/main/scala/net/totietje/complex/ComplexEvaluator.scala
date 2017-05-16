@@ -53,17 +53,17 @@ import net.totietje.evaluator.{AbstractEvaluator, Token}
   */
 object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
   
-  override protected def parseSpecialChar(char: Char): Option[(Token[ComplexFunction], Boolean)] = char match {
-    case '+' => Some(PLUS, true)
-    case '-' => Some(MINUS, true)
-    case '*' => Some(MULTIPLY, true)
-    case '/' => Some(DIVIDE, true)
-    case '^' => Some(POWER, true)
-    case ')' => Some(CloseParen(), false)
+  override protected def parseAfterValueChar(char: Char): Option[Token[ComplexFunction]] = char match {
+    case '+' => Some(PLUS)
+    case '-' => Some(MINUS)
+    case '*' => Some(MULTIPLY)
+    case '/' => Some(DIVIDE)
+    case '^' => Some(POWER)
+    case ')' => Some(CloseParen())
     case _   => None
   }
   
-  override protected def parseAfterOperatorChar(op: Char): Option[Token[ComplexFunction]] = op match {
+  override protected def parseOtherChar(op: Char): Option[Token[ComplexFunction]] = op match {
     case '+' => Some(UNARY_PLUS)
     case '-' => Some(UNARY_MINUS)
     case '(' => Some(OpenParen())

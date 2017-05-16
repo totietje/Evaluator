@@ -192,7 +192,7 @@ a syntax error.">
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A skeletal implementation of the <a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a> class to avoid duplication
 of common logic.</p><p>This class is applicable if, and only if, for each character it is unambiguous whether it is part of a
 word or special character. That is, every character can be either a special character, or part of a word, but not
-both.</p><p>A 'special character' here is a standalone character that has a special meaning. Special characters cannot be part
+both. Furthermore, neither special characters not words can contain whitespace.</p><p>A 'special character' here is a standalone character that has a special meaning. Special characters cannot be part
 of values or words. For example, <code>+</code> would be a special character.</p><p>A 'word' here is a meaningful string of characters that do not contain any whitespace or special characters.
 For example, the constant <code>pi</code> is a word, as are functions such as <code>sin</code>. Words cannot contain special characters
 or they could be mistaken for two words - the word <code>a+b</code> would be split into <code>a</code>, <code>+</code>, and <code>b</code>.</p></div><dl class="paramcmts block"><dt class="tparam">R</dt><dd class="cmt"><p>
@@ -274,10 +274,10 @@ or they could be mistaken for two words - the word <code>a+b</code> would be spl
 
         <div class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="net.totietje.evaluator.AbstractEvaluator#parseAfterOperatorChar" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="parseAfterOperatorChar(op:Char):Option[net.totietje.evaluator.Token[R]]"></a><a id="parseAfterOperatorChar(Char):Option[Token[R]]"></a>
+              <ol><li name="net.totietje.evaluator.AbstractEvaluator#parseAfterValueChar" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="parseAfterValueChar(char:Char):Option[net.totietje.evaluator.Token[R]]"></a><a id="parseAfterValueChar(Char):Option[Token[R]]"></a>
       <span class="permalink">
-      <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#parseAfterOperatorChar(op:Char):Option[net.totietje.evaluator.Token[R]]" title="Permalink">
+      <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#parseAfterValueChar(char:Char):Option[net.totietje.evaluator.Token[R]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -286,39 +286,41 @@ or they could be mistaken for two words - the word <code>a+b</code> would be spl
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">parseAfterOperatorChar</span><span class="params">(<span name="op">op: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span>]]</span>
+        <span class="name">parseAfterValueChar</span><span class="params">(<span name="char">char: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span>]]</span>
       </span>
       
-      <p class="shortcomment cmt">Determines what token, if any, the input is, given that it comes after an operator, or at the start of the
-expression.</p><div class="fullcomment"><div class="comment cmt"><p>Determines what token, if any, the input is, given that it comes after an operator, or at the start of the
-expression.</p><p>Unary operators must be defined here, as they come after operators. The unary operator token must be
+      <p class="shortcomment cmt">Determines if the character represents a token that comes after a value or close parenthesis.</p><div class="fullcomment"><div class="comment cmt"><p>Determines if the character represents a token that comes after a value or close parenthesis.</p><p>Operators belong here, as they come after values (for example, in <code>2 + 3</code> the <code>+</code> comes after the <code>2</code>).
+Close parentheses also belong here, as do argument separators.</p><p>In order to determine if a special character belongs here, ask yourself 'Would it make sense after a constant?'.
+If the answer is yes, it belongs here.</p></div><dl class="paramcmts block"><dt class="param">char</dt><dd class="cmt"><p>
+            A character in the expression being parsed</p></dd><dt>returns</dt><dd class="cmt"><p>
+        <code>None</code> if the input is not a special character, or the character does not belong after a value.
+        <code>Some(Token)</code> otherwise, where the token represents the character's purpose.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="net.totietje.evaluator.AbstractEvaluator#parseOtherChar" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="parseOtherChar(char:Char):Option[net.totietje.evaluator.Token[R]]"></a><a id="parseOtherChar(Char):Option[Token[R]]"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#parseOtherChar(char:Char):Option[net.totietje.evaluator.Token[R]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">parseOtherChar</span><span class="params">(<span name="char">char: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span>]]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Determines if the character represents a token that 1) comes after an operator, 2) comes after a function,
+3) follows an open parenthesis, or 4) is at the start of an expression.</p><div class="fullcomment"><div class="comment cmt"><p>Determines if the character represents a token that 1) comes after an operator, 2) comes after a function,
+3) follows an open parenthesis, or 4) is at the start of an expression.
+start of an expression.</p><p>Unary operators must be defined here, as they come after operators. The unary operator token must be
 a <a href="Token$$Function.html" class="extype" name="net.totietje.evaluator.Token.Function">Function</a> token. A character can be both a binary operator (one
 that works on two operands) and a unary operator (one that works on one operand), however, they must have
-distinct tokens.</p><p>Open parentheses also belong here, as they come after operators (for example, <code>2 * (3 + 4)</code>). However, close
-parentheses do not, they belong in the <code>parseSpecialChar</code> method.</p></div><dl class="paramcmts block"><dt class="param">op</dt><dd class="cmt"><p>
-          A character that follows an operator</p></dd><dt>returns</dt><dd class="cmt"><p>
-        <code>None</code> if the input is not a special character that follows an operator, <code>Some(Token)</code> if it is. The
-        token is the token representation of the character.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
-    </li><li name="net.totietje.evaluator.AbstractEvaluator#parseSpecialChar" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="parseSpecialChar(char:Char):Option[(net.totietje.evaluator.Token[R],Boolean)]"></a><a id="parseSpecialChar(Char):Option[(Token[R],Boolean)]"></a>
-      <span class="permalink">
-      <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#parseSpecialChar(char:Char):Option[(net.totietje.evaluator.Token[R],Boolean)]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parseSpecialChar</span><span class="params">(<span name="char">char: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[(<a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span>], <span class="extype" name="scala.Boolean">Boolean</span>)]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Determines what special character the input is, if any.</p><div class="fullcomment"><div class="comment cmt"><p>Determines what special character the input is, if any.</p></div><dl class="paramcmts block"><dt class="param">char</dt><dd class="cmt"><p>
-            A possible special character</p></dd><dt>returns</dt><dd class="cmt"><p>
-        <code>None</code> if the input is not a special character, <code>Some(Token, Boolean)</code> if it is. The token
-        is be the token representation of the character, and the boolean is whether this character was an
-        operator.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+distinct tokens.</p><p>Open parentheses also belong here, as they come after operators (for example, <code>2 * (3 + 4)</code>) or functions
+(<code>sin(2)</code>). However, close parentheses do not, instead, they belong in the <code>parseAfterValueChar</code> method.</p><p>In order to determine if a special character belongs here, ask yourself 'Would it make sense at the start of
+an expression?' If the answer is yes, it belongs here.</p></div><dl class="paramcmts block"><dt class="param">char</dt><dd class="cmt"><p>
+          A character in the expression being parsed</p></dd><dt>returns</dt><dd class="cmt"><p>
+        <code>None</code> if the input is not a special character, or does not belong in the specified positions.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
     </li><li name="net.totietje.evaluator.AbstractEvaluator#parseWord" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="parseWord(word:String):net.totietje.evaluator.Token[R]"></a><a id="parseWord(String):Token[R]"></a>
       <span class="permalink">
