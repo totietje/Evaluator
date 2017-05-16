@@ -82,7 +82,7 @@ object BooleanEvaluator extends AbstractEvaluator[Boolean] {
 Now, we can use our `BooleanEvaluator`:
 
 ```scala
-val bool = BooleanEvaluator.evaluate("(true | false) & !false")
+val bool = BooleanEvaluator.evaluate("(true | false) & !false") //true, as expected
 ```
 
 ### ComplexEvaluator
@@ -113,15 +113,25 @@ for (realPart <- -5 to 5) {
 
 Scala 2.12 required.
 
+Replace `VERSION` with the version shown above.
+
 SBT:
 
 ```
-dependencies += "net.totietje" %% "evaluator" % "1.0.0"
+dependencies += "net.totietje" %% "evaluator" % "VERSION"
+
+resolvers += Resolver.jcenterRepo
 ```
 
 Gradle:
 ```
-compile 'net.totietje:evaluator_2.12:1.0.0'
+dependencies {
+    compile 'net.totietje:evaluator_2.12:VERSION'
+}
+
+repositories {
+    jcenter()
+}
 ```
 
 Maven:
@@ -130,17 +140,27 @@ Maven:
 <dependency>
   <groupId>net.totietje</groupId>
   <artifactId>evaluator_2.12</artifactId>
-  <version>1.0.0</version>
+  <version>VERSION</version>
   <type>pom</type>
 </dependency>
+
+<repository>
+    <id>jcenter</id>
+    <name>jcenter-bintray</name>
+    <url>http://jcenter.bintray.com</url>
+</repository>
 ```
 
 Ivy:
 
 ```xml
-<dependency org='net.totietje' name='evaluator_2.12' rev='1.0.0'>
-  <artifact name='evaluator_2.12' ext='pom' ></artifact>
+<dependency org='net.totietje' name='evaluator_2.12' rev='VERSION'>
+  <artifact name='evaluator_2.12' ext='pom' />
 </dependency>
+
+<resolvers>
+  <bintray />
+</resolvers>
 ```
 
 ## Docs
