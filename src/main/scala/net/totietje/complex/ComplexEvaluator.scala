@@ -54,18 +54,18 @@ import net.totietje.evaluator.{AbstractEvaluator, Token}
 object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
   
   override protected def parseAfterValueChar(char: Char): Option[Token[ComplexFunction]] = char match {
-    case '+' => Some(PLUS)
-    case '-' => Some(MINUS)
-    case '*' => Some(MULTIPLY)
-    case '/' => Some(DIVIDE)
-    case '^' => Some(POWER)
+    case '+' => Some(Plus)
+    case '-' => Some(Minus)
+    case '*' => Some(Multiply)
+    case '/' => Some(Divide)
+    case '^' => Some(Power)
     case ')' => Some(CloseParen())
     case _   => None
   }
   
   override protected def parseOtherChar(op: Char): Option[Token[ComplexFunction]] = op match {
-    case '+' => Some(UNARY_PLUS)
-    case '-' => Some(UNARY_MINUS)
+    case '+' => Some(UnaryPlus)
+    case '-' => Some(UnaryMinus)
     case '(' => Some(OpenParen())
     case _   => None
   }
@@ -75,24 +75,24 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case "pi"|"π"   => Constant(Complex.Pi)
     case "tau"|"τ"  => Constant(Complex.Tau)
     case "e"        => Constant(Complex.E)
-    case "im"       => IM
-    case "re"       => RE
-    case "arg"      => ARG
-    case "abs"      => ABS
-    case "sqrt"|"√" => SQRT
-    case "log"|"ln" => LOG
-    case "sin"      => SIN
-    case "asin"     => ASIN
-    case "cos"      => COS
-    case "acos"     => ACOS
-    case "tan"      => TAN
-    case "atan"     => ATAN
-    case "sinh"     => SINH
-    case "asinh"    => ASINH
-    case "cosh"     => COSH
-    case "acosh"    => ACOSH
-    case "tanh"     => TANH
-    case "atanh"    => ATANH
+    case "im"       => Im
+    case "re"       => Re
+    case "arg"      => Arg
+    case "abs"      => Abs
+    case "sqrt"|"√" => Sqrt
+    case "log"|"ln" => Log
+    case "sin"      => Sin
+    case "asin"     => Asin
+    case "cos"      => Cos
+    case "acos"     => Acos
+    case "tan"      => Tan
+    case "atan"     => Atan
+    case "sinh"     => Sinh
+    case "asinh"    => Asinh
+    case "cosh"     => Cosh
+    case "acosh"    => Acosh
+    case "tanh"     => Tanh
+    case "atanh"    => Atanh
     case _          => try {
       Constant(word.toDouble)
     } catch {
