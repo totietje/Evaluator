@@ -17,4 +17,6 @@ name in bintray := "Evaluator"
 version in bintray := "1.0.0"
 bintrayRepository := "maven"
 
-target in Compile in doc := baseDirectory.value / "docs"
+target in Compile in doc := baseDirectory.value / "docs" / version.value
+
+scalacOptions in (Compile, doc) ++= Seq("-doc-title", "Evaluator Docs")

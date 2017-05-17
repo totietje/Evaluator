@@ -165,4 +165,4 @@ Ivy:
 
 ## Docs
 
-Docs can be found [here](https://totietje.github.io/Evaluator/docs/net/totietje/evaluator/index.html).
+Docs can be found [here](https://totietje.github.io/Evaluator/).
