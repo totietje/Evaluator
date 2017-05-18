@@ -18,6 +18,8 @@ package net.totietje.evaluator
   */
 abstract class AbstractEvaluator[R] extends Evaluator[R] {
   /** Transforms an expression into a list of tokens.
+    * @throws net.totietje.evaluator.EvaluationException
+    *                                                    If the input string contains an invalid token
     * @param expression
     *                   The input string to parse
     * @return
