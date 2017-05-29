@@ -36,21 +36,14 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
     
     if (first.isWhitespace) {
       tokenize(expression.substring(1), out, afterValue)
-    } else if (afterValue) {
-      parseAfterValueChar(first) match {
-        case Some(token) => tokenize(expression.substring(1), out :+ token, isValue(token))
-        case None => parseOtherChar(first) match {
-          case Some(_) => throw EvaluationException(s"Char '$first' unexpected")
-          case None => readWord(expression, out)
-        }
-      }
     } else {
-      parseOtherChar(first) match {
-        case Some(token) => tokenize(expression.substring(1), out :+ token, isValue(token))
-        case None => parseAfterValueChar(first) match {
-          case Some(_) => throw EvaluationException(s"Char '$first' unexpected")
-          case None => readWord(expression, out)
-        }
+      val a = parseAfterValueChar(first)
+      val b = parseOtherChar(first)
+      
+      (if (afterValue) (a, b) else (b, a)) match {
+        case (None, None) => readWord(expression, out)
+        case (Some(token), _)  => tokenize(expression.substring(1), out :+ token, isValue(token))
+        case _ => throw EvaluationException(s"Char '$first' unexpected")
       }
     }
   }
