@@ -16,9 +16,8 @@ For example, let's make a `BooleanEvaluator` object. It's purpose will be to eva
 should contain the operators & (and), | (or), and ! (not). It must also be able to handle parentheses. So,
 `!true & !false` should return the boolean value `false`.
 
-First, we define the tokens that make up our syntax:
-
 ```scala
+//First, we define the tokens we use:
 import net.totietje.evaluator.Token._
 import net.totietje.evaluator.Associativity
 
@@ -48,11 +47,8 @@ object BooleanToken {
     override def apply(): Boolean = false
   }
 }
-```
 
-Now, we can override `AbstractEvaluator`:
-
-```scala
+//Then, in another file, we can use these tokens:
 import BooleanToken._
 import net.totietje.evaluator.Token._
 import net.totietje.evaluator.{EvaluationException, AbstractEvaluator, Token}
