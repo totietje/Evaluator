@@ -616,7 +616,7 @@ object ComplexFunction {
     case Subtract(a, b) => s"($a - $b)"
     case Multiply(a, b) => s"($a * $b)"
     case Divide(a, b)   => s"($a / $b)"
-    case Power(a, b)    => s"$a ^ $b"
+    case Power(a, b)    => s"($a ^ $b)"
     case UnaryMinus(z)  => s"-$z"
     case Conj(z)        => s"conj($z)"
     case Abs(z)         => s"abs($z)"
