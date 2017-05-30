@@ -1,0 +1,4 @@
+This is the documentation for the Evaluator project (see [[http://github.com/totietje/evaluator GitHub]]).
+
+The main package [[net.totietje.evaluator]]. The [[net.totietje.complex]] package contains an
+example usage of this package, which may also be useful.
