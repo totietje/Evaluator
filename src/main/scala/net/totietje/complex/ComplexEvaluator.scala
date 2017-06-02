@@ -20,6 +20,7 @@ import net.totietje.evaluator.{AbstractEvaluator, Token}
   *   - re
   *   - arg
   *   - abs
+  *   - conj
   *   - sqrt or √
   *   - log or ln
   *   - sin
@@ -79,6 +80,7 @@ object ComplexEvaluator extends AbstractEvaluator[ComplexFunction] {
     case "re"       => Re
     case "arg"      => Arg
     case "abs"      => Abs
+    case "conj"     => Conj
     case "sqrt"|"√" => Sqrt
     case "log"|"ln" => Log
     case "sin"      => Sin
