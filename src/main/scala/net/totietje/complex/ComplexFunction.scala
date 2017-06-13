@@ -317,7 +317,9 @@ object ComplexFunction {
     *                 The function this represents
     */
   abstract class VariadicFunction(function: (Complex*) => Complex) extends ComplexFunction {
-    override def apply(in: Map[String, Complex] = Map()): Complex = function(arguments:_*)
+    override def apply(in: Map[String, Complex] = Map()): Complex = {
+      function(arguments.map(_(in)):_*)
+    }
   }
   
   /** The companion object for the `VariadicFunction` class, containing only an unapply method.
