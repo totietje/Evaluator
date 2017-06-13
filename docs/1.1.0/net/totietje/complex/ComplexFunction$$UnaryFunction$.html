@@ -1,0 +1,823 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title>Evaluator 1.1.0 - net.totietje.complex.ComplexFunction.UnaryFunction</title>
+          <meta name="description" content="Evaluator 1.1.0 - net.totietje.complex.ComplexFunction.UnaryFunction" />
+          <meta name="keywords" content="Evaluator 1.1.0 net.totietje.complex.ComplexFunction.UnaryFunction" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../../lib/index.js"></script>
+      <script type="text/javascript" src="../../../index.js"></script>
+      <script type="text/javascript" src="../../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title">Evaluator<span id="doc-version">1.1.0</span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="This is the documentation for the Evaluator project (see GitHub)." href="../../../index.html">
+              <span class="name">root</span>
+            </a>
+      </span>
+      
+      <p class="shortcomment cmt">This is the documentation for the Evaluator project (see <a href="http://github.com/totietje/evaluator" target="_blank">GitHub</a>).</p><div class="fullcomment"><div class="comment cmt"><p>This is the documentation for the Evaluator project (see <a href="http://github.com/totietje/evaluator" target="_blank">GitHub</a>).</p><p>The main package <a href="../evaluator/index.html" class="extype" name="net.totietje.evaluator">net.totietje.evaluator</a>. The <a href="index.html" class="extype" name="net.totietje.complex">net.totietje.complex</a> package contains an
+example usage of this package, which may also be useful.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.net" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="net"></a><a id="net:net"></a>
+      <span class="permalink">
+      <a href="index.html#net" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html">
+              <span class="name">net</span>
+            </a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="net.totietje" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="totietje"></a><a id="totietje:totietje"></a>
+      <span class="permalink">
+      <a href="../net/index.html#totietje" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../index.html">
+              <span class="name">totietje</span>
+            </a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="net">net</a></dd></dl></div>
+    </li><li name="net.totietje.complex" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="complex"></a><a id="complex:complex"></a>
+      <span class="permalink">
+      <a href="../../net/totietje/index.html#complex" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="This package is centered around the Complex class, with
+a focus on complex arithmetic." href="index.html">
+              <span class="name">complex</span>
+            </a>
+      </span>
+      
+      <p class="shortcomment cmt">This package is centered around the <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a> class, with
+a focus on complex arithmetic.</p><div class="fullcomment"><div class="comment cmt"><p>This package is centered around the <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a> class, with
+a focus on complex arithmetic.</p><p>The <a href="ComplexEvaluator$.html" class="extype" name="net.totietje.complex.ComplexEvaluator">ComplexEvaluator</a> object contains the <code>evaluate(String)</code> method
+for parsing a mathematical expression as a function of complex numbers.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="net.totietje">totietje</a></dd><div class="block">Examples:
+               <ol><li class="cmt"><p>val function = ComplexEvaluator.parse(&quot;log(i * x) - i * log(y)&quot;)</p></li>, <li class="cmt"><p>val sine = Complex(3, 4).sin</p></li></ol>
+            </div></dl></div>
+    </li><li name="net.totietje.complex.ComplexFunction" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ComplexFunction"></a><a id="ComplexFunction:ComplexFunction"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/index.html#ComplexFunction" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="A companion object for the ComplexFunction trait." href="ComplexFunction$.html">
+              <span class="name">ComplexFunction</span>
+            </a>
+      </span>
+      
+      <p class="shortcomment cmt">A companion object for the <code>ComplexFunction</code> trait.</p><div class="fullcomment"><div class="comment cmt"><p>A companion object for the <code>ComplexFunction</code> trait.</p><p>This contains all the subclasses of the sealed <code>ComplexFunction</code> class, and
+implicit conversions.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="net.totietje.complex">complex</a></dd></dl></div>
+    </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Abs.html" title="A function which is the absolute of another."></a>
+                        <a href="ComplexFunction$$Abs.html" title="A function which is the absolute of another.">
+                          Abs
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Acos.html" title="A function which is the inverse cosine of another."></a>
+                        <a href="ComplexFunction$$Acos.html" title="A function which is the inverse cosine of another.">
+                          Acos
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Acosh.html" title="A function which is the inverse hyperbolic cosine of another."></a>
+                        <a href="ComplexFunction$$Acosh.html" title="A function which is the inverse hyperbolic cosine of another.">
+                          Acosh
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Add.html" title="A function which adds together two other functions."></a>
+                        <a href="ComplexFunction$$Add.html" title="A function which adds together two other functions.">
+                          Add
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Arg.html" title="A function which is the argument of another."></a>
+                        <a href="ComplexFunction$$Arg.html" title="A function which is the argument of another.">
+                          Arg
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Asin.html" title="A function which is the inverse sine of another."></a>
+                        <a href="ComplexFunction$$Asin.html" title="A function which is the inverse sine of another.">
+                          Asin
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Asinh.html" title="A function which is the inverse hyperbolic sine of another."></a>
+                        <a href="ComplexFunction$$Asinh.html" title="A function which is the inverse hyperbolic sine of another.">
+                          Asinh
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Atan.html" title="A function which is the inverse tangent of another."></a>
+                        <a href="ComplexFunction$$Atan.html" title="A function which is the inverse tangent of another.">
+                          Atan
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Atanh.html" title="A function which is the inverse hyperbolic tangent of another."></a>
+                        <a href="ComplexFunction$$Atanh.html" title="A function which is the inverse hyperbolic tangent of another.">
+                          Atanh
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <a class="object" href="ComplexFunction$$BinaryFunction$.html" title="The companion object for the BinaryFunction class, containing only an unapply method."></a>
+                        <a class="class" href="ComplexFunction$$BinaryFunction.html" title="Represents a ComplexFunction with two arguments."></a>
+                        <a href="ComplexFunction$$BinaryFunction.html" title="Represents a ComplexFunction with two arguments.">
+                          BinaryFunction
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Conj.html" title="A function which is the conjugate of another."></a>
+                        <a href="ComplexFunction$$Conj.html" title="A function which is the conjugate of another.">
+                          Conj
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Constant.html" title="A constant which, when evaluated, always returns the same value."></a>
+                        <a href="ComplexFunction$$Constant.html" title="A constant which, when evaluated, always returns the same value.">
+                          Constant
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Cos.html" title="A function which is the cosine of another."></a>
+                        <a href="ComplexFunction$$Cos.html" title="A function which is the cosine of another.">
+                          Cos
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Cosh.html" title="A function which is the hyperbolic cosine of another."></a>
+                        <a href="ComplexFunction$$Cosh.html" title="A function which is the hyperbolic cosine of another.">
+                          Cosh
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Divide.html" title="A function which divides one function by another."></a>
+                        <a href="ComplexFunction$$Divide.html" title="A function which divides one function by another.">
+                          Divide
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Im.html" title="A function which is the imaginary part of another."></a>
+                        <a href="ComplexFunction$$Im.html" title="A function which is the imaginary part of another.">
+                          Im
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Log.html" title="A function which is the natural logarithm of another."></a>
+                        <a href="ComplexFunction$$Log.html" title="A function which is the natural logarithm of another.">
+                          Log
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Multiply.html" title="A function which multiplies one function by another."></a>
+                        <a href="ComplexFunction$$Multiply.html" title="A function which multiplies one function by another.">
+                          Multiply
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <a class="object" href="ComplexFunction$$NullaryFunction$.html" title="The companion object for the NullaryFunction class, containing only an unapply method."></a>
+                        <a class="class" href="ComplexFunction$$NullaryFunction.html" title="Represents a ComplexFunction with no arguments."></a>
+                        <a href="ComplexFunction$$NullaryFunction.html" title="Represents a ComplexFunction with no arguments.">
+                          NullaryFunction
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Power.html" title="A function which raises one function to the power of another."></a>
+                        <a href="ComplexFunction$$Power.html" title="A function which raises one function to the power of another.">
+                          Power
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Re.html" title="A function which is the real part of another."></a>
+                        <a href="ComplexFunction$$Re.html" title="A function which is the real part of another.">
+                          Re
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Sin.html" title="A function which is the sine of another."></a>
+                        <a href="ComplexFunction$$Sin.html" title="A function which is the sine of another.">
+                          Sin
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Sinh.html" title="A function which is the hyperbolic sine of another."></a>
+                        <a href="ComplexFunction$$Sinh.html" title="A function which is the hyperbolic sine of another.">
+                          Sinh
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Sqrt.html" title="A function which is the square root of another."></a>
+                        <a href="ComplexFunction$$Sqrt.html" title="A function which is the square root of another.">
+                          Sqrt
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Subtract.html" title="A function which subtracts one function from another."></a>
+                        <a href="ComplexFunction$$Subtract.html" title="A function which subtracts one function from another.">
+                          Subtract
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Tan.html" title="A function which is the tangent of another."></a>
+                        <a href="ComplexFunction$$Tan.html" title="A function which is the tangent of another.">
+                          Tan
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Tanh.html" title="A function which is the hyperbolic tangent of another."></a>
+                        <a href="ComplexFunction$$Tanh.html" title="A function which is the hyperbolic tangent of another.">
+                          Tanh
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <a class="object" href="ComplexFunction$$TernaryFunction$.html" title="The companion object for the TernaryFunction class, containing only an unapply method."></a>
+                        <a class="class" href="ComplexFunction$$TernaryFunction.html" title="Represents a ComplexFunction with three arguments."></a>
+                        <a href="ComplexFunction$$TernaryFunction.html" title="Represents a ComplexFunction with three arguments.">
+                          TernaryFunction
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <a class="object" href="" title="The companion object for the UnaryFunction class, containing only an unapply method."></a>
+                        <a class="class" href="ComplexFunction$$UnaryFunction.html" title="Represents a ComplexFunction with one argument."></a>
+                        <a href="ComplexFunction$$UnaryFunction.html" title="Represents a ComplexFunction with one argument.">
+                          UnaryFunction
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$UnaryMinus.html" title="A function which is the negative of another."></a>
+                        <a href="ComplexFunction$$UnaryMinus.html" title="A function which is the negative of another.">
+                          UnaryMinus
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="ComplexFunction$$Variable.html" title="A variable which, when evaluated, will return its respective function in the variable map."></a>
+                        <a href="ComplexFunction$$Variable.html" title="A variable which, when evaluated, will return its respective function in the variable map.">
+                          Variable
+                        </a>
+                      </li><li class="current-entities indented4">
+                        <a class="object" href="ComplexFunction$$VariadicFunction$.html" title="The companion object for the VariadicFunction class, containing only an unapply method."></a>
+                        <a class="class" href="ComplexFunction$$VariadicFunction.html" title="Represents a ComplexFunction with a variable number of arguments."></a>
+                        <a href="ComplexFunction$$VariadicFunction.html" title="Represents a ComplexFunction with a variable number of arguments.">
+                          VariadicFunction
+                        </a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="object value">
+      <div id="definition">
+        <a href="ComplexFunction$$UnaryFunction.html" title="See companion class"><div class="big-circle object-companion-class">o</div></a>
+        <p id="owner"><a href="../../index.html" class="extype" name="net">net</a>.<a href="../index.html" class="extype" name="net.totietje">totietje</a>.<a href="index.html" class="extype" name="net.totietje.complex">complex</a>.<a href="ComplexFunction$.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a></p>
+        <h1><a href="ComplexFunction$$UnaryFunction.html" title="See companion class">UnaryFunction</a><span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"><div>
+            Companion <a href="ComplexFunction$$UnaryFunction.html" title="See companion class">class UnaryFunction</a>
+          </div></span></h3>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <span class="name">UnaryFunction</span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The companion object for the <code>UnaryFunction</code> class, containing only an unapply method.
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/totietje/evaluator/blob/v1.1.0/src/main/scala/net/totietje/complex/ComplexFunction.scala" target="_blank">ComplexFunction.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
+            </ol>
+          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="net.totietje.complex.ComplexFunction.UnaryFunction"><span>UnaryFunction</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div class="values members">
+              <h3>Value Members</h3>
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="net.totietje.complex.ComplexFunction.UnaryFunction#unapply" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="unapply(function:net.totietje.complex.ComplexFunction.UnaryFunction):Option[net.totietje.complex.ComplexFunction]"></a><a id="unapply(UnaryFunction):Option[ComplexFunction]"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#unapply(function:net.totietje.complex.ComplexFunction.UnaryFunction):Option[net.totietje.complex.ComplexFunction]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">unapply</span><span class="params">(<span name="function">function: <a href="ComplexFunction$$UnaryFunction.html" class="extype" name="net.totietje.complex.ComplexFunction.UnaryFunction">UnaryFunction</a></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Returns the function's argument wrapped in a <code>Some()</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the function's argument wrapped in a <code>Some()</code>.</p></div><dl class="paramcmts block"><dt class="param">function</dt><dd class="cmt"><p>
+                The function to unapply</p></dd><dt>returns</dt><dd class="cmt"><p>
+        <code>Some(function.argument)</code></p></dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$UnaryFunction$.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li>
+              </ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>
