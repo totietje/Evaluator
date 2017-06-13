@@ -212,7 +212,7 @@ object ComplexFunction {
       * @return
       *         `Some()`
       */
-    def unapply(function: NullaryFunction): Option[Unit] = Some()
+    def unapply(function: NullaryFunction): Option[Unit] = Some(())
   }
   
   /** Represents a `ComplexFunction` with one argument.
