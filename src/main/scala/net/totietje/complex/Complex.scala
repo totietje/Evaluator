@@ -323,6 +323,12 @@ case class Complex(re: Double, im: Double = 0) {
     Complex(round(re), round(im))
   }
   
+  /** Whether either the real part or the imaginary part of this complex number is `NaN`.
+    * @return
+    *         `re.isNaN || im.isNaN`
+    */
+  def hasNaNPart: Boolean = re.isNaN || im.isNaN
+  
   private def round(v: Double)(implicit precision: Int): Double = if (v.isInfinite || v.isNaN) {
     v
   } else {
