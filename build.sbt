@@ -2,7 +2,7 @@ import java.io.PrintWriter
 
 name := "Evaluator"
 
-version := "1.0.0"
+version := "1.1.0"
 
 crossScalaVersions := Seq("2.10.6", "2.11.11", "2.12.2")
 
@@ -16,7 +16,7 @@ credentials += Credentials(Path.userHome / ".bintray" / ".credentials")
 
 publishMavenStyle := true
 name in bintray := "Evaluator"
-version in bintray := "1.1.0"
+version in bintray := version.value
 bintrayRepository := "maven"
 
 scalacOptions in (Compile, doc) ++= Seq("-sourcepath", baseDirectory.value.getAbsolutePath)
