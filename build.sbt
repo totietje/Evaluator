@@ -16,7 +16,7 @@ credentials += Credentials(Path.userHome / ".bintray" / ".credentials")
 
 publishMavenStyle := true
 name in bintray := "Evaluator"
-version in bintray := "1.0.0"
+version in bintray := "1.1.0"
 bintrayRepository := "maven"
 
 scalacOptions in (Compile, doc) ++= Seq("-sourcepath", baseDirectory.value.getAbsolutePath)
