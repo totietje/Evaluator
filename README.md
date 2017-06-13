@@ -107,7 +107,8 @@ for (realPart <- -5 to 5) {
 
 [ ![Download](https://api.bintray.com/packages/totietje/maven/evaluator/images/download.svg) ](https://bintray.com/totietje/maven/evaluator/_latestVersion)
 
-Scala 2.12 required.
+Scala 2.10, 2.11 or 2.12 required. If the scala version used is not 2.12, replace `2.12` with the version you are using
+below.
 
 Replace `VERSION` with the version shown above.
 
