@@ -60,7 +60,7 @@ object Token {
     * @tparam R
     *           The type that the evaluator should return after evaluating the tokens
     */
-  abstract class Function[R](val args: Int) extends Precedence[R] with Postfix[R] {
+  abstract class Function[R](val args: Int) extends Postfix[R] with Precedence[R] {
     /** The precedence of the function, that is, the priority with which it should be evaluated.
       *
       * By default this is `Int.MaxValue` to indicate highest priority.
@@ -110,7 +110,7 @@ object Token {
     * @tparam R
     *           The type that the evaluator should return after evaluating the tokens
     */
-  sealed abstract class Parenthesis[R] extends Token[R] with Precedence[R] {
+  sealed abstract class Parenthesis[R] extends Precedence[R] {
     /** The precedence of the parenthesis.
       *
       * This will return `Int.MinValue` to indicate no priority.
