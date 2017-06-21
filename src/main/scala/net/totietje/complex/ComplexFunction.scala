@@ -20,13 +20,52 @@ abstract class ComplexFunction {
     * If no map is provided, it will be empty by default. Thus, if the function contains a variable, it will throw a
     * [[net.totietje.complex.VariableException VariableException]].
     * @param in
-    *          The variable map, empty by default
+    *          The variable map
     * @return
     *         The evaluated function
     * @throws net.totietje.complex.VariableException
-    *                           If the function contains an undefined variable
+    *                           If the function contains a variable undefined by the map
     */
-  def apply(in: Map[String, Complex] = Map()) : Complex
+  def apply(in: Map[String, Complex]) : Complex
+  
+  /** Evaluates the complex function, substituting in the values for each variable as given in the input map in the
+    * form of tuple key-value pairs.
+    *
+    * If the function contains a variable whose value is not given by input variables, it will throw a
+    * [[net.totietje.complex.VariableException VariableException]].
+    *
+    * If nothing is provided, it will be empty by default. Thus, if the function contains a variable, it will throw a
+    * [[net.totietje.complex.VariableException VariableException]].
+    * @param in
+    *          The variables to substitute in
+    * @param default
+    *                 The default variable map, empty by default. If a variable is defined both by `in` and by
+    *                 `defaults`, the value given in `in` takes priority.
+    * @return
+    *         The evaluated function
+    * @throws net.totietje.complex.VariableException
+    *                           If the function contains a variable whose value is not given
+    */
+  def apply(in: (String, Complex)*)(implicit default: Map[String, Complex] = Map()): Complex = {
+    apply(default ++ Map(in:_*))
+  }
+  
+  /** Evaluates this complex function, substituting the value for the given variable with the given value.
+    *
+    * If the function contains a variable other than the one given, it will throw a
+    * [[net.totietje.complex.VariableException VariableException]].
+    * @param value
+    *              The value to substitute in for the variable
+    * @param variable
+    *                 The variable whose value is to be substituted in
+    * @return
+    *         The evaluated function
+    * @throws net.totietje.complex.VariableException
+    *                           If the function contains a variable other than the one given
+    */
+  def apply(value: Complex)(implicit variable: String): Complex = {
+    apply(Map(variable -> value))
+  }
   
   /** Adds this function to another one.
     *
@@ -224,7 +263,7 @@ object ComplexFunction {
      */
     val argument: ComplexFunction
     
-    override def apply(in: Map[String, Complex] = Map()): Complex = function(argument(in))
+    override def apply(in: Map[String, Complex]): Complex = function(argument(in))
     
     override def arguments: Seq[ComplexFunction] = Seq(argument)
   }
@@ -256,7 +295,7 @@ object ComplexFunction {
       */
     val right: ComplexFunction
     
-    override def apply(in: Map[String, Complex] = Map()): Complex = function(left(in), right(in))
+    override def apply(in: Map[String, Complex]): Complex = function(left(in), right(in))
   
     override def arguments: Seq[ComplexFunction] = Seq(left, right)
   }
@@ -292,7 +331,7 @@ object ComplexFunction {
       */
     val third: ComplexFunction
   
-    override def apply(in: Map[String, Complex] = Map()): Complex = function(first(in), second(in), third(in))
+    override def apply(in: Map[String, Complex]): Complex = function(first(in), second(in), third(in))
     
     override def arguments: Seq[ComplexFunction] = Seq(first, second, third)
   }
@@ -317,7 +356,7 @@ object ComplexFunction {
     *                 The function this represents
     */
   abstract class VariadicFunction(function: (Complex*) => Complex) extends ComplexFunction {
-    override def apply(in: Map[String, Complex] = Map()): Complex = {
+    override def apply(in: Map[String, Complex]): Complex = {
       function(arguments.map(_(in)):_*)
     }
   }
