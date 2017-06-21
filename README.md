@@ -94,12 +94,10 @@ Example usage:
 import net.totietje.complex._
 
 val function = ComplexEvaluator.evaluate("i * sin(pi * x)")
-for (realPart <- -5 to 5) {
-  for (imaginaryPart <- -5 to 5) {
-    val input = Complex(realPart, imaginaryPart)
-    val output = function(Map("x" -> input))
-    println(s"When x is $input, function is $output")
-  }
+for (realPart <- -5 to 5; imaginaryPart <- -5 to 5) {
+  val input = Complex(realPart, imaginaryPart)
+  val output = function("x" -> input)
+  println(s"When x is $input, function is $output")
 }
 ```
 
