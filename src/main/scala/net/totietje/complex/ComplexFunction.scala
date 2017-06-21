@@ -249,7 +249,7 @@ object ComplexFunction {
       * @param function
       *            A `NullaryFunction`, ignored
       * @return
-      *         `Some()`
+      *         `Some(())`
       */
     def unapply(function: NullaryFunction): Option[Unit] = Some(())
   }
