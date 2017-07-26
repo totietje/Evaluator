@@ -126,8 +126,8 @@ example usage of this package, which may also be useful.</p></div><dl class="att
       </span>
       
       <p class="shortcomment cmt">The <code>evaluator</code> package is designed to simplify the process of parsing a string.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>evaluator</code> package is designed to simplify the process of parsing a string.</p><p>The work of parsing a string is reduced to just tokenizing an expression, that is, breaking it down into its
-principal parts. The <code>Evaluator</code> class will handle the rest.</p><p>The <code>AbstractEvaluator</code> makes this even easier, though it is only applicable in some situations.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="net.totietje">totietje</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></p></span><span class="cmt"><p><a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></p></span></dd></dl></div>
+principal parts. The <code>AbstractEvaluator</code> class will handle the rest.</p><p>The <code>AbstractTokenizer</code> makes this even easier, though it is only applicable in some situations.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="net.totietje">totietje</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="AbstractTokenizer.html" class="extype" name="net.totietje.evaluator.AbstractTokenizer">AbstractTokenizer</a></p></span><span class="cmt"><p><a href="Tokenizer.html" class="extype" name="net.totietje.evaluator.Tokenizer">Tokenizer</a></p></span><span class="cmt"><p><a href="AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></p></span><span class="cmt"><p><a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></p></span></dd></dl></div>
     </li><li class="current-entities indented3">
                         <span class="separator"></span>
                         <a class="class" href="AbstractEvaluator.html" title="A skeletal implementation of the Evaluator class to avoid duplication
@@ -135,6 +135,12 @@ of common logic."></a>
                         <a href="AbstractEvaluator.html" title="A skeletal implementation of the Evaluator class to avoid duplication
 of common logic.">
                           AbstractEvaluator
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AbstractTokenizer.html" title=""></a>
+                        <a href="AbstractTokenizer.html" title="">
+                          AbstractTokenizer
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="Associativity$.html" title="Contains the instances of the associativity trait."></a>
@@ -158,9 +164,15 @@ a syntax error.">
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="" title="Contains all the different types of tokens."></a>
-                        <a class="trait" href="Token.html" title="Represents one of the base parts of an expression parsed by an Evaluator."></a>
-                        <a href="Token.html" title="Represents one of the base parts of an expression parsed by an Evaluator.">
+                        <a class="trait" href="Token.html" title="Represents one of the base parts of an string expression"></a>
+                        <a href="Token.html" title="Represents one of the base parts of an string expression">
                           Token
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="Tokenizer.html" title="This tokenizes a string, breaking it down into its principle parts."></a>
+                        <a href="Tokenizer.html" title="This tokenizes a string, breaking it down into its principle parts.">
+                          Tokenizer
                         </a>
                       </li>
               </ul>
@@ -284,9 +296,9 @@ a syntax error.">
       <p class="shortcomment cmt">A close parenthesis.</p><div class="fullcomment"><div class="comment cmt"><p>A close parenthesis.</p></div><dl class="paramcmts block"><dt class="tparam">R</dt><dd class="cmt"><p>
           The type that the evaluator should return after evaluating the tokens</p></dd></dl></div>
     </li><li name="net.totietje.evaluator.Token.Function" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="Function[R]extendsToken.Precedence[R]withToken.Postfix[R]"></a><a id="Function[R]:Function[R]"></a>
+      <a id="Function[R]extendsToken.Postfix[R]withToken.Precedence[R]"></a><a id="Function[R]:Function[R]"></a>
       <span class="permalink">
-      <a href="../../../net/totietje/evaluator/Token$.html#Function[R]extendsToken.Precedence[R]withToken.Postfix[R]" title="Permalink">
+      <a href="../../../net/totietje/evaluator/Token$.html#Function[R]extendsToken.Postfix[R]withToken.Precedence[R]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -297,7 +309,7 @@ a syntax error.">
       <span class="symbol">
         <a title="Represents a function." href="Token$$Function.html">
               <span class="name">Function</span>
-            </a><span class="tparams">[<span name="R">R</span>]</span><span class="result"> extends <span class="extype" name="net.totietje.evaluator.Token.Precedence">Precedence</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>] with <span class="extype" name="net.totietje.evaluator.Token.Postfix">Postfix</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</span>
+            </a><span class="tparams">[<span name="R">R</span>]</span><span class="result"> extends <span class="extype" name="net.totietje.evaluator.Token.Postfix">Postfix</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>] with <span class="extype" name="net.totietje.evaluator.Token.Precedence">Precedence</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Represents a function.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a function.</p><p>A function can have zero or more arguments. Immediately following the function, there should be a pair of
@@ -347,9 +359,9 @@ the expression <code>3 + 4 * 2</code>, is interpreted as <code>3 + (4 * 2)</code
 the <code>+</code> operator.</p></div><dl class="paramcmts block"><dt class="tparam">R</dt><dd class="cmt"><p>
           The type that the evaluator should return after evaluating the tokens</p></dd></dl></div>
     </li><li name="net.totietje.evaluator.Token.Parenthesis" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="Parenthesis[R]extendsToken[R]withToken.Precedence[R]"></a><a id="Parenthesis[R]:Parenthesis[R]"></a>
+      <a id="Parenthesis[R]extendsToken.Precedence[R]"></a><a id="Parenthesis[R]:Parenthesis[R]"></a>
       <span class="permalink">
-      <a href="../../../net/totietje/evaluator/Token$.html#Parenthesis[R]extendsToken[R]withToken.Precedence[R]" title="Permalink">
+      <a href="../../../net/totietje/evaluator/Token$.html#Parenthesis[R]extendsToken.Precedence[R]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -360,7 +372,7 @@ the <code>+</code> operator.</p></div><dl class="paramcmts block"><dt class="tpa
       <span class="symbol">
         <a title="Either an open or close parenthesis." href="Token$$Parenthesis.html">
               <span class="name">Parenthesis</span>
-            </a><span class="tparams">[<span name="R">R</span>]</span><span class="result"> extends <a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.Token.Parenthesis.R">R</span>] with <span class="extype" name="net.totietje.evaluator.Token.Precedence">Precedence</span>[<span class="extype" name="net.totietje.evaluator.Token.Parenthesis.R">R</span>]</span>
+            </a><span class="tparams">[<span name="R">R</span>]</span><span class="result"> extends <span class="extype" name="net.totietje.evaluator.Token.Precedence">Precedence</span>[<span class="extype" name="net.totietje.evaluator.Token.Parenthesis.R">R</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Either an open or close parenthesis.</p><div class="fullcomment"><div class="comment cmt"><p>Either an open or close parenthesis.</p><p>Parentheses are used to separate sections of an expression and indicate it acts as one value. For example,

@@ -3,8 +3,6 @@ package net.totietje.complex
 import net.totietje.evaluator.Associativity
 import net.totietje.evaluator.Token._
 
-import collection.immutable.IndexedSeq
-
 private object ComplexFunctionToken {
   case class Constant(complex: Complex) extends Value[ComplexFunction] {
     override def apply(): ComplexFunction = complex
@@ -30,67 +28,67 @@ private object ComplexFunctionToken {
   }
   
   case object Log extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Log(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Log(args.head)
   }
   case object Sqrt extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Sqrt(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Sqrt(args.head)
   }
   case object Arg extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Arg(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Arg(args.head)
   }
   case object Abs extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Abs(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Abs(args.head)
   }
   case object Conj extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Conj(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Conj(args.head)
   }
   case object Re extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Re(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Re(args.head)
   }
   case object Im extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Im(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Im(args.head)
   }
   case object UnaryMinus extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = -args(0)
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = -args.head
   }
   case object UnaryPlus extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = args(0)
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = args.head
   }
   
   case object Sin extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Sin(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Sin(args.head)
   }
   case object Cos extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Cos(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Cos(args.head)
   }
   case object Tan extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Tan(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Tan(args.head)
   }
   case object Asin extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Asin(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Asin(args.head)
   }
   case object Acos extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Acos(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Acos(args.head)
   }
   case object Atan extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Atan(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Atan(args.head)
   }
   case object Sinh extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Sinh(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Sinh(args.head)
   }
   case object Cosh extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Cosh(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Cosh(args.head)
   }
   case object Tanh extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Tanh(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Tanh(args.head)
   }
   case object Asinh extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Asinh(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Asinh(args.head)
   }
   case object Acosh extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Acosh(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Acosh(args.head)
   }
   case object Atanh extends Function[ComplexFunction](1) {
-    override def apply(args: IndexedSeq[ComplexFunction]): ComplexFunction = ComplexFunction.Atanh(args(0))
+    override def apply(args: Seq[ComplexFunction]): ComplexFunction = ComplexFunction.Atanh(args.head)
   }
 }

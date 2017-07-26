@@ -126,8 +126,8 @@ example usage of this package, which may also be useful.</p></div><dl class="att
       </span>
       
       <p class="shortcomment cmt">The <code>evaluator</code> package is designed to simplify the process of parsing a string.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>evaluator</code> package is designed to simplify the process of parsing a string.</p><p>The work of parsing a string is reduced to just tokenizing an expression, that is, breaking it down into its
-principal parts. The <code>Evaluator</code> class will handle the rest.</p><p>The <code>AbstractEvaluator</code> makes this even easier, though it is only applicable in some situations.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="net.totietje">totietje</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></p></span><span class="cmt"><p><a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></p></span></dd></dl></div>
+principal parts. The <code>AbstractEvaluator</code> class will handle the rest.</p><p>The <code>AbstractTokenizer</code> makes this even easier, though it is only applicable in some situations.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="net.totietje">totietje</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="AbstractTokenizer.html" class="extype" name="net.totietje.evaluator.AbstractTokenizer">AbstractTokenizer</a></p></span><span class="cmt"><p><a href="Tokenizer.html" class="extype" name="net.totietje.evaluator.Tokenizer">Tokenizer</a></p></span><span class="cmt"><p><a href="AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></p></span><span class="cmt"><p><a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></p></span></dd></dl></div>
     </li><li name="net.totietje.evaluator.Token" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Token"></a><a id="Token:Token"></a>
       <span class="permalink">
@@ -212,7 +212,7 @@ principal parts. The <code>Evaluator</code> class will handle the rest.</p><p>Th
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">Function</span><span class="tparams">[<span name="R">R</span>]</span><span class="result"> extends <span class="extype" name="net.totietje.evaluator.Token.Precedence">Precedence</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>] with <span class="extype" name="net.totietje.evaluator.Token.Postfix">Postfix</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</span>
+        <span class="name">Function</span><span class="tparams">[<span name="R">R</span>]</span><span class="result"> extends <span class="extype" name="net.totietje.evaluator.Token.Postfix">Postfix</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>] with <span class="extype" name="net.totietje.evaluator.Token.Precedence">Precedence</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</span>
       </span>
       </h4>
 
@@ -225,7 +225,7 @@ a function that accepts two arguments, and '<code>,</code>' is an argument separ
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="net.totietje.evaluator.Token.Postfix">Postfix</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>], <span class="extype" name="net.totietje.evaluator.Token.Precedence">Precedence</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>], <a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="net.totietje.evaluator.Token.Precedence">Precedence</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>], <span class="extype" name="net.totietje.evaluator.Token.Postfix">Postfix</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>], <a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -251,7 +251,7 @@ a function that accepts two arguments, and '<code>,</code>' is an argument separ
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="net.totietje.evaluator.Token.Function"><span>Function</span></li><li class="in" name="net.totietje.evaluator.Token.Postfix"><span>Postfix</span></li><li class="in" name="net.totietje.evaluator.Token.Precedence"><span>Precedence</span></li><li class="in" name="net.totietje.evaluator.Token"><span>Token</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="net.totietje.evaluator.Token.Function"><span>Function</span></li><li class="in" name="net.totietje.evaluator.Token.Precedence"><span>Precedence</span></li><li class="in" name="net.totietje.evaluator.Token.Postfix"><span>Postfix</span></li><li class="in" name="net.totietje.evaluator.Token"><span>Token</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -296,9 +296,9 @@ a function that accepts two arguments, and '<code>,</code>' is an argument separ
         <div class="values members">
               <h3>Abstract Value Members</h3>
               <ol><li name="net.totietje.evaluator.Token.Function#apply" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="apply(args:scala.collection.immutable.IndexedSeq[R]):R"></a><a id="apply(IndexedSeq[R]):R"></a>
+      <a id="apply(args:Seq[R]):R"></a><a id="apply(Seq[R]):R"></a>
       <span class="permalink">
-      <a href="../../../net/totietje/evaluator/Token$$Function.html#apply(args:scala.collection.immutable.IndexedSeq[R]):R" title="Permalink">
+      <a href="../../../net/totietje/evaluator/Token$$Function.html#apply(args:Seq[R]):R" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -307,7 +307,7 @@ a function that accepts two arguments, and '<code>,</code>' is an argument separ
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">apply</span><span class="params">(<span name="args">args: <span class="extype" name="scala.collection.immutable.IndexedSeq">IndexedSeq</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</span>)</span><span class="result">: <span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span></span>
+        <span class="name">apply</span><span class="params">(<span name="args">args: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</span>)</span><span class="result">: <span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span></span>
       </span>
       
       <p class="shortcomment cmt">Applies the function on the given arguments and returns the result.</p><div class="fullcomment"><div class="comment cmt"><p>Applies the function on the given arguments and returns the result.</p></div><dl class="paramcmts block"><dt class="param">args</dt><dd class="cmt"><p>
@@ -697,10 +697,10 @@ a function that accepts two arguments, and '<code>,</code>' is an argument separ
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="net.totietje.evaluator.Token.Postfix">
-              <h3>Inherited from <span class="extype" name="net.totietje.evaluator.Token.Postfix">Postfix</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</h3>
-            </div><div class="parent" name="net.totietje.evaluator.Token.Precedence">
+        <div class="parent" name="net.totietje.evaluator.Token.Precedence">
               <h3>Inherited from <span class="extype" name="net.totietje.evaluator.Token.Precedence">Precedence</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</h3>
+            </div><div class="parent" name="net.totietje.evaluator.Token.Postfix">
+              <h3>Inherited from <span class="extype" name="net.totietje.evaluator.Token.Postfix">Postfix</span>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</h3>
             </div><div class="parent" name="net.totietje.evaluator.Token">
               <h3>Inherited from <a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.Token.Function.R">R</span>]</h3>
             </div><div class="parent" name="scala.AnyRef">

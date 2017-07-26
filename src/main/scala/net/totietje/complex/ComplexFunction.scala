@@ -245,7 +245,7 @@ object ComplexFunction {
   /** The companion object for the `NullaryFunction` class, containing only an unapply method.
     */
   object NullaryFunction {
-    /** Returns `Some()`
+    /** Returns `Some(())`
       * @param function
       *            A `NullaryFunction`, ignored
       * @return

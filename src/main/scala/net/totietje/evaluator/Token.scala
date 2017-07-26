@@ -1,10 +1,8 @@
 package net.totietje.evaluator
 
-import collection.immutable.IndexedSeq
-
-/** Represents one of the base parts of an expression parsed by an [[net.totietje.evaluator.Evaluator Evaluator]].
+/** Represents one of the base parts of an string expression
   * @tparam R
-  *           The type that the evaluator should return after evaluating the tokens
+  *           The type that the string represents
   */
 sealed trait Token[R]
 
@@ -35,7 +33,7 @@ object Token {
     *           The type that the evaluator should return after evaluating the tokens
     */
   abstract class Operator[R](val precedence: Int, val associativity: Associativity)
-      extends Postfix[R] with Precedence[R] {
+    extends Postfix[R] with Precedence[R] {
     /** Returns the result of applying this operator on two values.
       * @param left
       *             The value to the left of the operator
@@ -76,7 +74,7 @@ object Token {
       * @return
       *         The result of applying the function on the input arguments
       */
-    def apply(args: IndexedSeq[R]): R
+    def apply(args: Seq[R]): R
   }
   
   /** Represents a value.

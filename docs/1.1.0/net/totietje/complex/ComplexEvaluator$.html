@@ -370,7 +370,7 @@ of accuracy.
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="net.totietje.evaluator.Evaluator#evaluate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="net.totietje.evaluator.AbstractEvaluator#evaluate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="evaluate(expression:String):R"></a><a id="evaluate(String):ComplexFunction"></a>
       <span class="permalink">
       <a href="../../../net/totietje/complex/ComplexEvaluator$.html#evaluate(expression:String):R" title="Permalink">
@@ -385,12 +385,13 @@ of accuracy.
         <span class="name">evaluate</span><span class="params">(<span name="expression">expression: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a></span>
       </span>
       
-      <p class="shortcomment cmt">Parses a string.</p><div class="fullcomment"><div class="comment cmt"><p>Parses a string.</p><p>First of all, this tokenizes the string using the abstract <code>tokenize</code> method, which must be overridden
-by the user. This transforms the string into an array of <a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Tokens</a> which represent
-the string in terms of its parts.</p><p>Then, this evaluates the provided array of tokens as the user defines, producing a result of type <code>R</code>. For more
+      <p class="shortcomment cmt">Parses a string.</p><div class="fullcomment"><div class="comment cmt"><p>Parses a string.</p><p>First of all, this tokenizes the string using the abstract <code>tokenizer</code> method, which must be overridden
+by the user. This returns a <a href="../evaluator/Tokenizer.html" class="extype" name="net.totietje.evaluator.Tokenizer">Tokenizer</a> which breaks the string down into a
+Seq of <a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Tokens</a>, representing the principle parts of
+the string.</p><p>Then, this evaluates the provided array of tokens as the user defines, producing a result of type <code>R</code>. For more
 information on how this happens, see <a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>.</p></div><dl class="paramcmts block"><dt class="param">expression</dt><dd class="cmt"><p>
                   The input string to parse</p></dd><dt>returns</dt><dd class="cmt"><p>
-        The result of parsing the input</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../evaluator/Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="../evaluator/EvaluationException.html" class="extype" name="net.totietje.evaluator.EvaluationException"><code>net.totietje.evaluator.EvaluationException</code></a> 
+        The result of parsing the input</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a> → <a href="../evaluator/Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="../evaluator/EvaluationException.html" class="extype" name="net.totietje.evaluator.EvaluationException"><code>net.totietje.evaluator.EvaluationException</code></a> 
                                                    If there is a syntax error in the expression</p></span></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
@@ -510,71 +511,6 @@ information on how this happens, see <a href="../evaluator/Token.html" class="ex
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="net.totietje.complex.ComplexEvaluator#parseAfterValueChar" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="parseAfterValueChar(char:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]"></a><a id="parseAfterValueChar(Char):Option[Token[ComplexFunction]]"></a>
-      <span class="permalink">
-      <a href="../../../net/totietje/complex/ComplexEvaluator$.html#parseAfterValueChar(char:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parseAfterValueChar</span><span class="params">(<span name="char">char: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>]]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Determines if the character represents a token that comes after a value or close parenthesis.</p><div class="fullcomment"><div class="comment cmt"><p>Determines if the character represents a token that comes after a value or close parenthesis.</p><p>Operators belong here, as they come after values (for example, in <code>2 + 3</code> the <code>+</code> comes after the <code>2</code>).
-Close parentheses also belong here, as do argument separators.</p><p>In order to determine if a special character belongs here, ask yourself 'Would it make sense after a constant?'.
-If the answer is yes, it belongs here.</p></div><dl class="paramcmts block"><dt class="param">char</dt><dd class="cmt"><p>
-            A character in the expression being parsed</p></dd><dt>returns</dt><dd class="cmt"><p>
-        <code>None</code> if the input is not a special character, or the character does not belong after a value.
-        <code>Some(Token)</code> otherwise, where the token represents the character's purpose.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.complex.ComplexEvaluator">ComplexEvaluator</a> → <a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></dd></dl></div>
-    </li><li name="net.totietje.complex.ComplexEvaluator#parseOtherChar" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="parseOtherChar(op:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]"></a><a id="parseOtherChar(Char):Option[Token[ComplexFunction]]"></a>
-      <span class="permalink">
-      <a href="../../../net/totietje/complex/ComplexEvaluator$.html#parseOtherChar(op:Char):Option[net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parseOtherChar</span><span class="params">(<span name="op">op: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>]]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Determines if the character represents a token that 1) comes after an operator, 2) comes after a function,
-3) follows an open parenthesis, or 4) is at the start of an expression.</p><div class="fullcomment"><div class="comment cmt"><p>Determines if the character represents a token that 1) comes after an operator, 2) comes after a function,
-3) follows an open parenthesis, or 4) is at the start of an expression.
-start of an expression.</p><p>Unary operators must be defined here, as they come after operators. The unary operator token must be
-a <a href="../evaluator/Token$$Function.html" class="extype" name="net.totietje.evaluator.Token.Function">Function</a> token. A character can be both a binary operator (one
-that works on two operands) and a unary operator (one that works on one operand), however, they must have
-distinct tokens.</p><p>Open parentheses also belong here, as they come after operators (for example, <code>2 * (3 + 4)</code>) or functions
-(<code>sin(2)</code>). However, close parentheses do not, instead, they belong in the <code>parseAfterValueChar</code> method.</p><p>In order to determine if a special character belongs here, ask yourself 'Would it make sense at the start of
-an expression?' If the answer is yes, it belongs here.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
-        <code>None</code> if the input is not a special character, or does not belong in the specified positions.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.complex.ComplexEvaluator">ComplexEvaluator</a> → <a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></dd></dl></div>
-    </li><li name="net.totietje.complex.ComplexEvaluator#parseWord" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="parseWord(word:String):net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]"></a><a id="parseWord(String):Token[ComplexFunction]"></a>
-      <span class="permalink">
-      <a href="../../../net/totietje/complex/ComplexEvaluator$.html#parseWord(word:String):net.totietje.evaluator.Token[net.totietje.complex.ComplexFunction]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parseWord</span><span class="params">(<span name="word">word: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Parses a possible word.</p><div class="fullcomment"><div class="comment cmt"><p>Parses a possible word.</p></div><dl class="paramcmts block"><dt class="param">word</dt><dd class="cmt"><p>
-            The word to parse</p></dd><dt>returns</dt><dd class="cmt"><p>
-        The token representation of the word</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.complex.ComplexEvaluator">ComplexEvaluator</a> → <a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="../evaluator/EvaluationException.html" class="extype" name="net.totietje.evaluator.EvaluationException"><code>net.totietje.evaluator.EvaluationException</code></a> 
-                                                   If the input string is not a valid word</p></span></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -607,25 +543,22 @@ an expression?' If the answer is yes, it belongs here.</p></div><dl class="param
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="net.totietje.evaluator.AbstractEvaluator#tokenize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="tokenize(expression:String):Array[net.totietje.evaluator.Token[R]]"></a><a id="tokenize(String):Array[Token[ComplexFunction]]"></a>
+    </li><li name="net.totietje.complex.ComplexEvaluator#tokenizer" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tokenizer:net.totietje.evaluator.Tokenizer[net.totietje.complex.ComplexFunction]"></a><a id="tokenizer:Tokenizer[ComplexFunction]"></a>
       <span class="permalink">
-      <a href="../../../net/totietje/complex/ComplexEvaluator$.html#tokenize(expression:String):Array[net.totietje.evaluator.Token[R]]" title="Permalink">
+      <a href="../../../net/totietje/complex/ComplexEvaluator$.html#tokenizer:net.totietje.evaluator.Tokenizer[net.totietje.complex.ComplexFunction]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier">final </span>
+        <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">tokenize</span><span class="params">(<span name="expression">expression: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<a href="../evaluator/Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>]]</span>
+        <span class="name">tokenizer</span><span class="result">: <a href="../evaluator/Tokenizer.html" class="extype" name="net.totietje.evaluator.Tokenizer">Tokenizer</a>[<a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a>]</span>
       </span>
       
-      <p class="shortcomment cmt">Transforms an expression into a list of tokens.</p><div class="fullcomment"><div class="comment cmt"><p>Transforms an expression into a list of tokens.</p></div><dl class="paramcmts block"><dt class="param">expression</dt><dd class="cmt"><p>
-                  The input string to parse</p></dd><dt>returns</dt><dd class="cmt"><p>
-        An array of tokens containing the information needed to evaluate it</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a> → <a href="../evaluator/Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="../evaluator/EvaluationException.html" class="extype" name="net.totietje.evaluator.EvaluationException"><code>net.totietje.evaluator.EvaluationException</code></a> 
-                                                   If the input string contains an invalid token</p></span></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.complex.ComplexEvaluator">ComplexEvaluator</a> → <a href="../evaluator/AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">

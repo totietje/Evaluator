@@ -643,15 +643,61 @@ this function divided by the result of evaluating the other.</p></div><dl class=
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">apply</span><span class="params">(<span name="in">in: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a>] = <span class="symbol">Map()</span></span>)</span><span class="result">: <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a></span>
+        <span class="name">apply</span><span class="params">(<span name="in">in: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a>]</span>)</span><span class="result">: <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a></span>
       </span>
       
       <p class="shortcomment cmt">Evaluates the complex function, substituting in the values for each variable as given in the map.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the complex function, substituting in the values for each variable as given in the map.</p><p>If the function contains a variable whose value is not given by the variable map, it will throw a
 <a href="VariableException.html" class="extype" name="net.totietje.complex.VariableException">VariableException</a>.</p><p>If no map is provided, it will be empty by default. Thus, if the function contains a variable, it will throw a
 <a href="VariableException.html" class="extype" name="net.totietje.complex.VariableException">VariableException</a>.</p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>
-         The variable map, empty by default</p></dd><dt>returns</dt><dd class="cmt"><p>
+         The variable map</p></dd><dt>returns</dt><dd class="cmt"><p>
         The evaluated function</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.complex.ComplexFunction.VariadicFunction">VariadicFunction</a> → <a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="VariableException.html" class="extype" name="net.totietje.complex.VariableException"><code>net.totietje.complex.VariableException</code></a> 
-                          If the function contains an undefined variable</p></span></dd></dl></div>
+                          If the function contains a variable undefined by the map</p></span></dd></dl></div>
+    </li><li name="net.totietje.complex.ComplexFunction#apply" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="apply(value:net.totietje.complex.Complex)(implicitvariable:String):net.totietje.complex.Complex"></a><a id="apply(Complex)(String):Complex"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$VariadicFunction.html#apply(value:net.totietje.complex.Complex)(implicitvariable:String):net.totietje.complex.Complex" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">(<span name="value">value: <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="variable">variable: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Evaluates this complex function, substituting the value for the given variable with the given value.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates this complex function, substituting the value for the given variable with the given value.</p><p>If the function contains a variable other than the one given, it will throw a
+<a href="VariableException.html" class="extype" name="net.totietje.complex.VariableException">VariableException</a>.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>
+             The value to substitute in for the variable</p></dd><dt class="param">variable</dt><dd class="cmt"><p>
+                The variable whose value is to be substituted in</p></dd><dt>returns</dt><dd class="cmt"><p>
+        The evaluated function</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="VariableException.html" class="extype" name="net.totietje.complex.VariableException"><code>net.totietje.complex.VariableException</code></a> 
+                          If the function contains a variable other than the one given</p></span></dd></dl></div>
+    </li><li name="net.totietje.complex.ComplexFunction#apply" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="apply(in:(String,net.totietje.complex.Complex)*)(implicitdefault:Map[String,net.totietje.complex.Complex]):net.totietje.complex.Complex"></a><a id="apply((String,Complex)*)(Map[String,Complex]):Complex"></a>
+      <span class="permalink">
+      <a href="../../../net/totietje/complex/ComplexFunction$$VariadicFunction.html#apply(in:(String,net.totietje.complex.Complex)*)(implicitdefault:Map[String,net.totietje.complex.Complex]):net.totietje.complex.Complex" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">(<span name="in">in: (<span class="extype" name="scala.Predef.String">String</span>, <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a>)*</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="default">default: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a>] = <span class="symbol">Map()</span></span>)</span><span class="result">: <a href="Complex.html" class="extype" name="net.totietje.complex.Complex">Complex</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Evaluates the complex function, substituting in the values for each variable as given in the input map in the
+form of tuple key-value pairs.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the complex function, substituting in the values for each variable as given in the input map in the
+form of tuple key-value pairs.</p><p>If the function contains a variable whose value is not given by input variables, it will throw a
+<a href="VariableException.html" class="extype" name="net.totietje.complex.VariableException">VariableException</a>.</p><p>If nothing is provided, it will be empty by default. Thus, if the function contains a variable, it will throw a
+<a href="VariableException.html" class="extype" name="net.totietje.complex.VariableException">VariableException</a>.</p></div><dl class="paramcmts block"><dt class="param">in</dt><dd class="cmt"><p>
+         The variables to substitute in</p></dd><dt class="param">default</dt><dd class="cmt"><p>
+                The default variable map, empty by default. If a variable is defined both by <code>in</code> and by
+                <code>defaults</code>, the value given in <code>in</code> takes priority.</p></dd><dt>returns</dt><dd class="cmt"><p>
+        The evaluated function</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ComplexFunction.html" class="extype" name="net.totietje.complex.ComplexFunction">ComplexFunction</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="VariableException.html" class="extype" name="net.totietje.complex.VariableException"><code>net.totietje.complex.VariableException</code></a> 
+                          If the function contains a variable whose value is not given</p></span></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">

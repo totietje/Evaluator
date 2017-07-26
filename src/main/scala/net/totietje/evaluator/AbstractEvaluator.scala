@@ -14,100 +14,57 @@ package net.totietje.evaluator
   * For example, the constant `pi` is a word, as are functions such as `sin`. Words cannot contain special characters
   * or they could be mistaken for two words - the word `a+b` would be split into `a`, `+`, and `b`.
   * @tparam R
-  *           What the string should be evaluated to
+  *           The type that the string input should be evaluated to
   */
 abstract class AbstractEvaluator[R] extends Evaluator[R] {
-  /** Transforms an expression into a list of tokens.
+  protected def tokenizer: Tokenizer[R]
+  
+  /** Parses a string.
+    *
+    * First of all, this tokenizes the string using the abstract `tokenizer` method, which must be overridden
+    * by the user. This returns a [[net.totietje.evaluator.Tokenizer Tokenizer]] which breaks the string down into a
+    * Seq of [[net.totietje.evaluator.Token Tokens]], representing the principle parts of
+    * the string.
+    *
+    * Then, this evaluates the provided array of tokens as the user defines, producing a result of type `R`. For more
+    * information on how this happens, see [[net.totietje.evaluator.Token Token]].
     * @throws net.totietje.evaluator.EvaluationException
-    *                                                    If the input string contains an invalid token
+    *                                                    If there is a syntax error in the expression
     * @param expression
     *                   The input string to parse
     * @return
-    *         An array of tokens containing the information needed to evaluate it
+    *         The result of parsing the input
     */
-  override final protected def tokenize(expression: String): Array[Token[R]] = {
-    tokenize(expression, Array(), afterValue = false)
+  final override def evaluate(expression: String): R = {
+    evaluateTokens(tokenizer.tokenize(expression))
   }
   
-  private def tokenize(expression: String, out: Array[Token[R]], afterValue: Boolean) : Array[Token[R]] = {
-    if (expression.isEmpty) return out
+  private def evaluateTokens(tokens: Seq[Token[R]]): R = {
+    evaluatePostfix(ShuntingYard.toPostfix(tokens))
+  }
+  
+  private def evaluatePostfix(tokens: Seq[Token.Postfix[R]], stack: Seq[R] = Seq()): R = {
+    def stackIndex(index: Int) : R = {
+      if (stack.isEmpty) {
+        throw EvaluationException()
+      }
+      stack(index)
+    }
     
-    val first = expression.head
-    
-    if (first.isWhitespace) {
-      tokenize(expression.substring(1), out, afterValue)
+    if (tokens.isEmpty) {
+      if (stack.length != 1) {
+        throw EvaluationException()
+      } else {
+        stack.head
+      }
     } else {
-      val a = parseAfterValueChar(first)
-      val b = parseOtherChar(first)
-      
-      (if (afterValue) (a, b) else (b, a)) match {
-        case (None, None) => readWord(expression, out)
-        case (Some(token), _)  => tokenize(expression.substring(1), out :+ token, isValue(token))
-        case _ => throw EvaluationException(s"Char '$first' unexpected")
+      tokens.head match {
+        case op: Token.Operator[R] => evaluatePostfix(tokens.tail, op(stackIndex(0), stackIndex(1)) +: stack.drop(2))
+        case function: Token.Function[R] =>
+          val functionResult = function(for (i <- 0 until function.args) yield stackIndex(i))
+          evaluatePostfix(tokens.tail, functionResult +: stack.drop(function.args))
+        case value : Token.Value[R] => evaluatePostfix(tokens.tail, value() +: stack.drop(1))
       }
     }
   }
-  
-  private def isValue(token: Token[R]) =
-    token.isInstanceOf[Token.Value[R]] || token.isInstanceOf[Token.CloseParen[R]]
-  
-  private def readWord(expression: String, out: Array[Token[R]], acc: String = ""): Array[Token[R]] = {
-    if (expression.isEmpty) {
-      return out :+ parseWord(acc)
-    }
-    
-    val first = expression.head
-    if (parseAfterValueChar(first).isDefined || parseOtherChar(first).isDefined || first.isWhitespace) {
-      val token = parseWord(acc)
-      tokenize(expression, out :+ token, isValue(token))
-    } else {
-      readWord(expression.substring(1), out, acc + first)
-    }
-  }
-  
-  /** Determines if the character represents a token that comes after a value or close parenthesis.
-    *
-    * Operators belong here, as they come after values (for example, in `2 + 3` the `+` comes after the `2`).
-    * Close parentheses also belong here, as do argument separators.
-    *
-    * In order to determine if a special character belongs here, ask yourself 'Would it make sense after a constant?'.
-    * If the answer is yes, it belongs here.
-    * @param char
-    *             A character in the expression being parsed
-    * @return
-    *         `None` if the input is not a special character, or the character does not belong after a value.
-    *         `Some(Token)` otherwise, where the token represents the character's purpose.
-    */
-  protected def parseAfterValueChar(char: Char): Option[Token[R]]
-  
-  /** Determines if the character represents a token that 1) comes after an operator, 2) comes after a function,
-    * 3) follows an open parenthesis, or 4) is at the start of an expression.
-    * start of an expression.
-    *
-    * Unary operators must be defined here, as they come after operators. The unary operator token must be
-    * a [[net.totietje.evaluator.Token.Function Function]] token. A character can be both a binary operator (one
-    * that works on two operands) and a unary operator (one that works on one operand), however, they must have
-    * distinct tokens.
-    *
-    * Open parentheses also belong here, as they come after operators (for example, `2 * (3 + 4)`) or functions
-    * (`sin(2)`). However, close parentheses do not, instead, they belong in the `parseAfterValueChar` method.
-    *
-    * In order to determine if a special character belongs here, ask yourself 'Would it make sense at the start of
-    * an expression?' If the answer is yes, it belongs here.
-    * @param char
-    *           A character in the expression being parsed
-    * @return
-    *         `None` if the input is not a special character, or does not belong in the specified positions.
-    */
-  protected def parseOtherChar(char: Char): Option[Token[R]]
-  
-  /** Parses a possible word.
-    * @throws net.totietje.evaluator.EvaluationException
-    *                                                    If the input string is not a valid word
-    * @param word
-    *             The word to parse
-    * @return
-    *         The token representation of the word
-    */
-  protected def parseWord(word: String) : Token[R]
 }

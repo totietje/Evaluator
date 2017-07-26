@@ -5,15 +5,11 @@ A Scala expression parser.
 
 ### Creating an Evaluator
 
-The `Evaluator` class is designed for simplifying the process of parsing a string, such as a maths expression. It
-allows you to define your own syntax. This is further made easier by the `AbstractEvaluator` class.
-
-To create your own `Evaluator`, you should make an object that extends it. You must then override the `tokenize`
-method, which transforms the string into an array of `Token`s. The `AbstractEvaluator`, if it is applicable to your
-use case, makes this much easier.
+The `AbstractEvaluator` class is designed to simplify the process of parsing a string. The subclass must simply
+override the `tokenizer` method. This can be further simplified with the `AbstractTokenizer` class, if applicable.
 
 For example, let's make a `BooleanEvaluator` object. It's purpose will be to evaluate a string as a `Boolean`, and
-should contain the operators & (and), | (or), and ! (not). It must also be able to handle parentheses. So,
+should contain the operators & (and), | (or), ^ (xor), and ! (not). It must also be able to handle parentheses. So,
 `!true & !false` should return the boolean value `false`.
 
 ```scala
@@ -21,22 +17,24 @@ should contain the operators & (and), | (or), and ! (not). It must also be able 
 import net.totietje.evaluator.Token._
 import net.totietje.evaluator.Associativity
 
-import collection.immutable.IndexedSeq
-
 object BooleanToken {
   //0 is the precedence. This does not matter much here, but may in more complicated examples.
   object And extends Operator[Boolean](0, Associativity.Left) {
     override def apply(left: Boolean, right: Boolean): Boolean = left & right
   }
   
-  object Or extends Operator[Boolean](0, Associativity.Left) {
+  object Or extends Operator[Boolean](1, Associativity.Left) {
     override def apply(left: Boolean, right: Boolean): Boolean = left | right
+  }
+  
+  object Xor extends Operator[Boolean](2, Associativity.Left) {
+    override def apply(left: Boolean, right: Boolean): Boolean = left ^ right
   }
   
   //This function accepts 1 parameter
   object Not extends Function[Boolean](1) {
     //args will have length 1 
-    override def apply(args: IndexedSeq[Boolean]): Boolean = !args(0)
+    override def apply(args: Seq[Boolean]): Boolean = !args.head
   }
   
   object True extends Value[Boolean] {
@@ -51,9 +49,9 @@ object BooleanToken {
 //Then, in another file, we can use these tokens:
 import BooleanToken._
 import net.totietje.evaluator.Token._
-import net.totietje.evaluator.{EvaluationException, AbstractEvaluator, Token}
+import net.totietje.evaluator.{EvaluationException, AbstractTokenizer, Token}
 
-object BooleanEvaluator extends AbstractEvaluator[Boolean] {
+object BooleanTokenizer extends AbstractTokenizer[Boolean] {
   override protected def parseAfterValueChar(op: Char): Option[Token[Boolean]] = op match {
     case '&' => Some(And)
     case '|' => Some(Or)
@@ -73,12 +71,19 @@ object BooleanEvaluator extends AbstractEvaluator[Boolean] {
     case _ => throw EvaluationException(s"Unrecognised word $word")
   }
 }
+
+//Finally, we can create our BooleanEvaluator:
+import net.totietje.evaluator.AbstractEvaluator
+
+object BooleanEvaluator extends AbstractEvaluator[Boolean] {
+  def tokenizer = BooleanTokenizer
+}
 ```
 
 Now, we can use our `BooleanEvaluator`:
 
 ```scala
-val bool = BooleanEvaluator.evaluate("(true | false) & !false") //true, as expected
+val example1 = BooleanEvaluator.evaluate("(true | false) & !false") //true, as expected
 ```
 
 ### ComplexEvaluator

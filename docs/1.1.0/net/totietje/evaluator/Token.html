@@ -126,8 +126,8 @@ example usage of this package, which may also be useful.</p></div><dl class="att
       </span>
       
       <p class="shortcomment cmt">The <code>evaluator</code> package is designed to simplify the process of parsing a string.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>evaluator</code> package is designed to simplify the process of parsing a string.</p><p>The work of parsing a string is reduced to just tokenizing an expression, that is, breaking it down into its
-principal parts. The <code>Evaluator</code> class will handle the rest.</p><p>The <code>AbstractEvaluator</code> makes this even easier, though it is only applicable in some situations.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="net.totietje">totietje</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></p></span><span class="cmt"><p><a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></p></span></dd></dl></div>
+principal parts. The <code>AbstractEvaluator</code> class will handle the rest.</p><p>The <code>AbstractTokenizer</code> makes this even easier, though it is only applicable in some situations.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="net.totietje">totietje</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="AbstractTokenizer.html" class="extype" name="net.totietje.evaluator.AbstractTokenizer">AbstractTokenizer</a></p></span><span class="cmt"><p><a href="Tokenizer.html" class="extype" name="net.totietje.evaluator.Tokenizer">Tokenizer</a></p></span><span class="cmt"><p><a href="AbstractEvaluator.html" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></p></span><span class="cmt"><p><a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></p></span></dd></dl></div>
     </li><li class="current-entities indented3">
                         <span class="separator"></span>
                         <a class="class" href="AbstractEvaluator.html" title="A skeletal implementation of the Evaluator class to avoid duplication
@@ -135,6 +135,12 @@ of common logic."></a>
                         <a href="AbstractEvaluator.html" title="A skeletal implementation of the Evaluator class to avoid duplication
 of common logic.">
                           AbstractEvaluator
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AbstractTokenizer.html" title=""></a>
+                        <a href="AbstractTokenizer.html" title="">
+                          AbstractTokenizer
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="Associativity$.html" title="Contains the instances of the associativity trait."></a>
@@ -158,9 +164,15 @@ a syntax error.">
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="Token$.html" title="Contains all the different types of tokens."></a>
-                        <a class="trait" href="" title="Represents one of the base parts of an expression parsed by an Evaluator."></a>
-                        <a href="" title="Represents one of the base parts of an expression parsed by an Evaluator.">
+                        <a class="trait" href="" title="Represents one of the base parts of an string expression"></a>
+                        <a href="" title="Represents one of the base parts of an string expression">
                           Token
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="Tokenizer.html" title="This tokenizes a string, breaking it down into its principle parts."></a>
+                        <a href="Tokenizer.html" title="This tokenizes a string, breaking it down into its principle parts.">
+                          Tokenizer
                         </a>
                       </li>
               </ul>
@@ -192,8 +204,8 @@ a syntax error.">
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents one of the base parts of an expression parsed by an <a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a>.</p></div><dl class="paramcmts block"><dt class="tparam">R</dt><dd class="cmt"><p>
-          The type that the evaluator should return after evaluating the tokens</p></dd></dl><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/totietje/evaluator/blob/v1.1.0/src/main/scala/net/totietje/evaluator/Token.scala" target="_blank">Token.scala</a></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents one of the base parts of an string expression</p></div><dl class="paramcmts block"><dt class="tparam">R</dt><dd class="cmt"><p>
+          The type that the string represents</p></dd></dl><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/totietje/evaluator/blob/v1.1.0/src/main/scala/net/totietje/evaluator/Token.scala" target="_blank">Token.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -202,7 +214,7 @@ a syntax error.">
             <span class="toggle">
               Known Subclasses
             </span>
-            <div class="subClasses hiddenContent"><a href="Token$$ArgSeparator.html" class="extype" name="net.totietje.evaluator.Token.ArgSeparator">ArgSeparator</a>, <a href="Token$$CloseParen.html" class="extype" name="net.totietje.evaluator.Token.CloseParen">CloseParen</a>, <a href="Token$$OpenParen.html" class="extype" name="net.totietje.evaluator.Token.OpenParen">OpenParen</a>, <a href="Token$$Parenthesis.html" class="extype" name="net.totietje.evaluator.Token.Parenthesis">Parenthesis</a></div>
+            <div class="subClasses hiddenContent"><a href="Token$$ArgSeparator.html" class="extype" name="net.totietje.evaluator.Token.ArgSeparator">ArgSeparator</a></div>
           </div></div>
         
 

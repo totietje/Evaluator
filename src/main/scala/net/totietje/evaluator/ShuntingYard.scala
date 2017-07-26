@@ -1,69 +1,75 @@
 package net.totietje.evaluator
 
 import Token._
-import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
 private object ShuntingYard {
-  def toPostfix[R](tokens: Array[Token[R]]): Array[Postfix[R]] = {
-    val opStack = new ListBuffer[Precedence[R]]()
-    val output = new ArrayBuffer[Postfix[R]]()
-    
-    for (token <- tokens) {
-      token match {
-        case op: Operator[R] => addOp(op, opStack, output)
-        case function: Function[R] => opStack += function
-        case value: Value[R] => output += value
-        case ArgSeparator() => findOpenBracket(opStack, output)
-        case paren@OpenParen() => opStack += paren
+  def toPostfix[R](tokens: Seq[Token[R]], opStack: Seq[Precedence[R]] = Seq()): Seq[Postfix[R]] = {
+    if (tokens.isEmpty) {
+      emptyOpStack(opStack)
+    } else {
+      val (newOpStack: Seq[Precedence[R]], output: Seq[Postfix[R]]) = tokens.head match {
+        case op: Operator[R] => addOp(op, opStack)
+        case function: Function[R] => (function +: opStack, Seq())
+        case value: Value[R] => (opStack, Seq(value))
+        case ArgSeparator() => findOpenBracket(opStack)
+        case paren: OpenParen[R] => (paren +: opStack, Seq())
         case CloseParen() =>
-          findOpenBracket(opStack, output)
-          popParenthesis(opStack, output)
+          val (newOpStack, output) = findOpenBracket(opStack)
+          val (newerOpStack, nextOutput) = popParenthesis(newOpStack)
+          (newerOpStack, output ++ nextOutput)
       }
+      output ++ toPostfix(tokens.tail, newOpStack)
     }
-    
-    while (opStack.nonEmpty) {
-      val token = opStack.remove(opStack.length - 1)
-      token match {
-        case t: Postfix[R] => output += t
+  }
+  
+  private def emptyOpStack[R](opStack: Seq[Precedence[R]]): Seq[Postfix[R]] = {
+    if (opStack.isEmpty) {
+      Seq()
+    } else {
+      val top = opStack.head
+      top match {
+        case t: Postfix[R] => t +: emptyOpStack(opStack.tail)
         case _: Parenthesis[R] => throw EvaluationException("Mismatched parentheses")
       }
     }
-    
-    output.toArray
   }
   
-  private def addOp[R](op: Operator[R], opStack: ListBuffer[Precedence[R]], output: ArrayBuffer[Postfix[R]]) : Unit = {
+  private def addOp[R](op: Operator[R], opStack: Seq[Precedence[R]]): (Seq[Precedence[R]], Seq[Postfix[R]]) = {
     if (opStack.isEmpty) {
-      opStack += op
+      (op +: opStack, Seq())
     } else {
-      val top = opStack.last
+      val top = opStack.head
       if ((top.precedence > op.precedence) || ((top.precedence == op.precedence) && op.associativity == Associativity.Left)) {
-        output += opStack.remove(opStack.length - 1).asInstanceOf[Postfix[R]]
-        addOp(op, opStack, output)
+        val (newOpStack, output) = addOp(op, opStack.tail)
+        (newOpStack, top.asInstanceOf[Postfix[R]] +: output)
       } else {
-        opStack += op
+        (op +: opStack, Seq())
       }
     }
   }
   
-  private def findOpenBracket[R](opStack: ListBuffer[Precedence[R]], output: ArrayBuffer[Postfix[R]]) : Unit = {
-    var top = opStack.last
-    while (!top.isInstanceOf[OpenParen[R]]) {
-      opStack.remove(opStack.length - 1)
-      output += top.asInstanceOf[Postfix[R]]
-      if (opStack.isEmpty) throw EvaluationException("Mismatched parentheses")
-      top = opStack.last
+  private def findOpenBracket[R](opStack: Seq[Token.Precedence[R]]): (Seq[Precedence[R]], Seq[Postfix[R]]) = {
+    if (opStack.isEmpty) {
+      throw EvaluationException("Mismatched parentheses")
+    }
+    
+    val top = opStack.head
+    if (!top.isInstanceOf[OpenParen[R]]) {
+      val (newOpStack, output) = findOpenBracket(opStack.tail)
+      (newOpStack, top.asInstanceOf[Postfix[R]] +: output)
+    } else {
+      (opStack, Seq())
     }
   }
   
-  private def popParenthesis[R](opStack: ListBuffer[Precedence[R]], output: ArrayBuffer[Postfix[R]]) = {
-    opStack.remove(opStack.length - 1)
-    if (opStack.nonEmpty) {
-      val top = opStack.last
+  private def popParenthesis[R](opStack: Seq[Token.Precedence[R]]): (Seq[Precedence[R]], Seq[Postfix[R]]) = {
+    val newOpStack = opStack.tail
+    if (newOpStack.nonEmpty) {
+      val top = newOpStack.head
       if (top.isInstanceOf[Function[R]]) {
-        output += top.asInstanceOf[Postfix[R]]
-        opStack.remove(opStack.length - 1)
+        (newOpStack.tail, Seq(top.asInstanceOf[Postfix[R]]))
       }
     }
+    (newOpStack, Seq())
   }
 }

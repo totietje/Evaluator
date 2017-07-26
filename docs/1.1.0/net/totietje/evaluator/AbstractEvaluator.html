@@ -126,8 +126,8 @@ example usage of this package, which may also be useful.</p></div><dl class="att
       </span>
       
       <p class="shortcomment cmt">The <code>evaluator</code> package is designed to simplify the process of parsing a string.</p><div class="fullcomment"><div class="comment cmt"><p>The <code>evaluator</code> package is designed to simplify the process of parsing a string.</p><p>The work of parsing a string is reduced to just tokenizing an expression, that is, breaking it down into its
-principal parts. The <code>Evaluator</code> class will handle the rest.</p><p>The <code>AbstractEvaluator</code> makes this even easier, though it is only applicable in some situations.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="net.totietje">totietje</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></p></span><span class="cmt"><p><a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></p></span></dd></dl></div>
+principal parts. The <code>AbstractEvaluator</code> class will handle the rest.</p><p>The <code>AbstractTokenizer</code> makes this even easier, though it is only applicable in some situations.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="net.totietje">totietje</a></dd><dt>See also</dt><dd><span class="cmt"><p><a href="AbstractTokenizer.html" class="extype" name="net.totietje.evaluator.AbstractTokenizer">AbstractTokenizer</a></p></span><span class="cmt"><p><a href="Tokenizer.html" class="extype" name="net.totietje.evaluator.Tokenizer">Tokenizer</a></p></span><span class="cmt"><p><a href="" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a></p></span><span class="cmt"><p><a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></p></span></dd></dl></div>
     </li><li class="current-entities indented3">
                         <span class="separator"></span>
                         <a class="class" href="" title="A skeletal implementation of the Evaluator class to avoid duplication
@@ -135,6 +135,12 @@ of common logic."></a>
                         <a href="" title="A skeletal implementation of the Evaluator class to avoid duplication
 of common logic.">
                           AbstractEvaluator
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="AbstractTokenizer.html" title=""></a>
+                        <a href="AbstractTokenizer.html" title="">
+                          AbstractTokenizer
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="Associativity$.html" title="Contains the instances of the associativity trait."></a>
@@ -158,9 +164,15 @@ a syntax error.">
                         </a>
                       </li><li class="current-entities indented3">
                         <a class="object" href="Token$.html" title="Contains all the different types of tokens."></a>
-                        <a class="trait" href="Token.html" title="Represents one of the base parts of an expression parsed by an Evaluator."></a>
-                        <a href="Token.html" title="Represents one of the base parts of an expression parsed by an Evaluator.">
+                        <a class="trait" href="Token.html" title="Represents one of the base parts of an string expression"></a>
+                        <a href="Token.html" title="Represents one of the base parts of an string expression">
                           Token
+                        </a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="Tokenizer.html" title="This tokenizes a string, breaking it down into its principle parts."></a>
+                        <a href="Tokenizer.html" title="This tokenizes a string, breaking it down into its principle parts.">
+                          Tokenizer
                         </a>
                       </li>
               </ul>
@@ -197,7 +209,7 @@ both. Furthermore, neither special characters not words can contain whitespace.<
 of values or words. For example, <code>+</code> would be a special character.</p><p>A 'word' here is a meaningful string of characters that do not contain any whitespace or special characters.
 For example, the constant <code>pi</code> is a word, as are functions such as <code>sin</code>. Words cannot contain special characters
 or they could be mistaken for two words - the word <code>a+b</code> would be split into <code>a</code>, <code>+</code>, and <code>b</code>.</p></div><dl class="paramcmts block"><dt class="tparam">R</dt><dd class="cmt"><p>
-          What the string should be evaluated to</p></dd></dl><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/totietje/evaluator/blob/v1.1.0/src/main/scala/net/totietje/evaluator/AbstractEvaluator.scala" target="_blank">AbstractEvaluator.scala</a></dd></dl><div class="toggleContainer block">
+          The type that the string input should be evaluated to</p></dd></dl><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/totietje/evaluator/blob/v1.1.0/src/main/scala/net/totietje/evaluator/AbstractEvaluator.scala" target="_blank">AbstractEvaluator.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -275,10 +287,10 @@ or they could be mistaken for two words - the word <code>a+b</code> would be spl
 
         <div class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="net.totietje.evaluator.AbstractEvaluator#parseAfterValueChar" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="parseAfterValueChar(char:Char):Option[net.totietje.evaluator.Token[R]]"></a><a id="parseAfterValueChar(Char):Option[Token[R]]"></a>
+              <ol><li name="net.totietje.evaluator.AbstractEvaluator#tokenizer" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="tokenizer:net.totietje.evaluator.Tokenizer[R]"></a><a id="tokenizer:Tokenizer[R]"></a>
       <span class="permalink">
-      <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#parseAfterValueChar(char:Char):Option[net.totietje.evaluator.Token[R]]" title="Permalink">
+      <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#tokenizer:net.totietje.evaluator.Tokenizer[R]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -287,60 +299,10 @@ or they could be mistaken for two words - the word <code>a+b</code> would be spl
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">parseAfterValueChar</span><span class="params">(<span name="char">char: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span>]]</span>
+        <span class="name">tokenizer</span><span class="result">: <a href="Tokenizer.html" class="extype" name="net.totietje.evaluator.Tokenizer">Tokenizer</a>[<span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span>]</span>
       </span>
       
-      <p class="shortcomment cmt">Determines if the character represents a token that comes after a value or close parenthesis.</p><div class="fullcomment"><div class="comment cmt"><p>Determines if the character represents a token that comes after a value or close parenthesis.</p><p>Operators belong here, as they come after values (for example, in <code>2 + 3</code> the <code>+</code> comes after the <code>2</code>).
-Close parentheses also belong here, as do argument separators.</p><p>In order to determine if a special character belongs here, ask yourself 'Would it make sense after a constant?'.
-If the answer is yes, it belongs here.</p></div><dl class="paramcmts block"><dt class="param">char</dt><dd class="cmt"><p>
-            A character in the expression being parsed</p></dd><dt>returns</dt><dd class="cmt"><p>
-        <code>None</code> if the input is not a special character, or the character does not belong after a value.
-        <code>Some(Token)</code> otherwise, where the token represents the character's purpose.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
-    </li><li name="net.totietje.evaluator.AbstractEvaluator#parseOtherChar" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="parseOtherChar(char:Char):Option[net.totietje.evaluator.Token[R]]"></a><a id="parseOtherChar(Char):Option[Token[R]]"></a>
-      <span class="permalink">
-      <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#parseOtherChar(char:Char):Option[net.totietje.evaluator.Token[R]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parseOtherChar</span><span class="params">(<span name="char">char: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span>]]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Determines if the character represents a token that 1) comes after an operator, 2) comes after a function,
-3) follows an open parenthesis, or 4) is at the start of an expression.</p><div class="fullcomment"><div class="comment cmt"><p>Determines if the character represents a token that 1) comes after an operator, 2) comes after a function,
-3) follows an open parenthesis, or 4) is at the start of an expression.
-start of an expression.</p><p>Unary operators must be defined here, as they come after operators. The unary operator token must be
-a <a href="Token$$Function.html" class="extype" name="net.totietje.evaluator.Token.Function">Function</a> token. A character can be both a binary operator (one
-that works on two operands) and a unary operator (one that works on one operand), however, they must have
-distinct tokens.</p><p>Open parentheses also belong here, as they come after operators (for example, <code>2 * (3 + 4)</code>) or functions
-(<code>sin(2)</code>). However, close parentheses do not, instead, they belong in the <code>parseAfterValueChar</code> method.</p><p>In order to determine if a special character belongs here, ask yourself 'Would it make sense at the start of
-an expression?' If the answer is yes, it belongs here.</p></div><dl class="paramcmts block"><dt class="param">char</dt><dd class="cmt"><p>
-          A character in the expression being parsed</p></dd><dt>returns</dt><dd class="cmt"><p>
-        <code>None</code> if the input is not a special character, or does not belong in the specified positions.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
-    </li><li name="net.totietje.evaluator.AbstractEvaluator#parseWord" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="parseWord(word:String):net.totietje.evaluator.Token[R]"></a><a id="parseWord(String):Token[R]"></a>
-      <span class="permalink">
-      <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#parseWord(word:String):net.totietje.evaluator.Token[R]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">abstract </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parseWord</span><span class="params">(<span name="word">word: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Parses a possible word.</p><div class="fullcomment"><div class="comment cmt"><p>Parses a possible word.</p></div><dl class="paramcmts block"><dt class="param">word</dt><dd class="cmt"><p>
-            The word to parse</p></dd><dt>returns</dt><dd class="cmt"><p>
-        The token representation of the word</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="EvaluationException.html" class="extype" name="net.totietje.evaluator.EvaluationException"><code>net.totietje.evaluator.EvaluationException</code></a> 
-                                                   If the input string is not a valid word</p></span></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
     </li></ol>
             </div>
 
@@ -465,7 +427,7 @@ an expression?' If the answer is yes, it belongs here.</p></div><dl class="param
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="net.totietje.evaluator.Evaluator#evaluate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="net.totietje.evaluator.AbstractEvaluator#evaluate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="evaluate(expression:String):R"></a><a id="evaluate(String):R"></a>
       <span class="permalink">
       <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#evaluate(expression:String):R" title="Permalink">
@@ -480,12 +442,13 @@ an expression?' If the answer is yes, it belongs here.</p></div><dl class="param
         <span class="name">evaluate</span><span class="params">(<span name="expression">expression: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span></span>
       </span>
       
-      <p class="shortcomment cmt">Parses a string.</p><div class="fullcomment"><div class="comment cmt"><p>Parses a string.</p><p>First of all, this tokenizes the string using the abstract <code>tokenize</code> method, which must be overridden
-by the user. This transforms the string into an array of <a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Tokens</a> which represent
-the string in terms of its parts.</p><p>Then, this evaluates the provided array of tokens as the user defines, producing a result of type <code>R</code>. For more
+      <p class="shortcomment cmt">Parses a string.</p><div class="fullcomment"><div class="comment cmt"><p>Parses a string.</p><p>First of all, this tokenizes the string using the abstract <code>tokenizer</code> method, which must be overridden
+by the user. This returns a <a href="Tokenizer.html" class="extype" name="net.totietje.evaluator.Tokenizer">Tokenizer</a> which breaks the string down into a
+Seq of <a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Tokens</a>, representing the principle parts of
+the string.</p><p>Then, this evaluates the provided array of tokens as the user defines, producing a result of type <code>R</code>. For more
 information on how this happens, see <a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>.</p></div><dl class="paramcmts block"><dt class="param">expression</dt><dd class="cmt"><p>
                   The input string to parse</p></dd><dt>returns</dt><dd class="cmt"><p>
-        The result of parsing the input</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="EvaluationException.html" class="extype" name="net.totietje.evaluator.EvaluationException"><code>net.totietje.evaluator.EvaluationException</code></a> 
+        The result of parsing the input</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a> → <a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="EvaluationException.html" class="extype" name="net.totietje.evaluator.EvaluationException"><code>net.totietje.evaluator.EvaluationException</code></a> 
                                                    If there is a syntax error in the expression</p></span></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
@@ -637,25 +600,6 @@ information on how this happens, see <a href="Token.html" class="extype" name="n
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="net.totietje.evaluator.AbstractEvaluator#tokenize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="tokenize(expression:String):Array[net.totietje.evaluator.Token[R]]"></a><a id="tokenize(String):Array[Token[R]]"></a>
-      <span class="permalink">
-      <a href="../../../net/totietje/evaluator/AbstractEvaluator.html#tokenize(expression:String):Array[net.totietje.evaluator.Token[R]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">tokenize</span><span class="params">(<span name="expression">expression: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<a href="Token.html" class="extype" name="net.totietje.evaluator.Token">Token</a>[<span class="extype" name="net.totietje.evaluator.AbstractEvaluator.R">R</span>]]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Transforms an expression into a list of tokens.</p><div class="fullcomment"><div class="comment cmt"><p>Transforms an expression into a list of tokens.</p></div><dl class="paramcmts block"><dt class="param">expression</dt><dd class="cmt"><p>
-                  The input string to parse</p></dd><dt>returns</dt><dd class="cmt"><p>
-        An array of tokens containing the information needed to evaluate it</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="net.totietje.evaluator.AbstractEvaluator">AbstractEvaluator</a> → <a href="Evaluator.html" class="extype" name="net.totietje.evaluator.Evaluator">Evaluator</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><a href="EvaluationException.html" class="extype" name="net.totietje.evaluator.EvaluationException"><code>net.totietje.evaluator.EvaluationException</code></a> 
-                                                   If the input string contains an invalid token</p></span></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
