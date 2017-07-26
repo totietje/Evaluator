@@ -45,7 +45,7 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
   
   private def evaluatePostfix(tokens: Seq[Token.Postfix[R]], stack: Seq[R] = Seq()): R = {
     def stackIndex(index: Int) : R = {
-      if (stack.isEmpty) {
+      if (index >= stack.length) {
         throw EvaluationException()
       }
       stack(index)
@@ -59,11 +59,11 @@ abstract class AbstractEvaluator[R] extends Evaluator[R] {
       }
     } else {
       tokens.head match {
-        case op: Token.Operator[R] => evaluatePostfix(tokens.tail, op(stackIndex(0), stackIndex(1)) +: stack.drop(2))
+        case op: Token.Operator[R] => evaluatePostfix(tokens.tail, op(stackIndex(1), stackIndex(0)) +: stack.drop(2))
         case function: Token.Function[R] =>
           val functionResult = function(for (i <- 0 until function.args) yield stackIndex(i))
           evaluatePostfix(tokens.tail, functionResult +: stack.drop(function.args))
-        case value : Token.Value[R] => evaluatePostfix(tokens.tail, value() +: stack.drop(1))
+        case value : Token.Value[R] => evaluatePostfix(tokens.tail, value() +: stack)
       }
     }
   }
