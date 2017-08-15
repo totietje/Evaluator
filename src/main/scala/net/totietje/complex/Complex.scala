@@ -85,7 +85,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         The complex conjugate
     */
-  def conj: Complex = Complex(re, -im)
+  lazy val conj: Complex = Complex(re, -im)
   
   /** Calculates `e` to the power of this complex number and returns the result.
     *
@@ -93,7 +93,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `e`^`this`^
     */
-  def exp: Complex = math.exp(re) * (math.cos(im) + (I * math.sin(im)))
+  lazy val exp: Complex = math.exp(re) * (math.cos(im) + (I * math.sin(im)))
   
   /** Calculates the absolute value of this complex number, also known as the modulus, and returns it.
     * The absolute is the distance between a point on the complex plane representing the number and the origin.
@@ -105,7 +105,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         The absolute
     */
-  def abs: Double = math.sqrt(im * im + re * re)
+  lazy val abs: Double = math.sqrt(im * im + re * re)
   
   /** Calculates the argument, that is, the angle between the positive real axis and the point representing
     * this number on the complex plane. The result will be between `π` and `-π`.
@@ -114,7 +114,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         The argument
     */
-  def arg: Double = math.atan2(im, re)
+  lazy val arg: Double = math.atan2(im, re)
   
   /**
     * Calculates the principle natural logarithm of this number. Although numbers have infinitely many logarithms,
@@ -126,7 +126,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `logₑ(this)`
     */
-  def log: Complex = this match {
+  lazy val log: Complex = this match {
     case Zero => Complex(Double.NegativeInfinity)
     case _    => Complex(math.log(abs), arg)
   }
@@ -177,7 +177,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `√this`
     */
-  def sqrt: Complex = pow(0.5)
+  lazy val sqrt: Complex = pow(0.5)
   
   /** Returns the sine of this number.
     *
@@ -185,7 +185,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `sin(this)`
     */
-  def sin: Complex = {
+  lazy val sin: Complex = {
     0.5 * I * ((-I * this).exp - (I * this).exp)
   }
   
@@ -195,7 +195,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `sin`^`-1`^`(this)`
     */
-  def asin: Complex = -I * (I * this + (1 - this * this).sqrt).log
+  lazy val asin: Complex = -I * (I * this + (1 - this * this).sqrt).log
   
   /** Returns the cosine of this number.
     *
@@ -203,7 +203,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `cos(this)`
     */
-  def cos: Complex = 0.5 * ((I * this).exp + (-I * this).exp)
+  lazy val cos: Complex = 0.5 * ((I * this).exp + (-I * this).exp)
   
   /** Returns the principal inverse cosine of this number, that is, the number whose cosine this is.
     *
@@ -211,7 +211,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `cos`^`-1`^`(this)`
     */
-  def acos: Complex = 0.5 * Pi - asin
+  lazy val acos: Complex = 0.5 * Pi - asin
   
   /** Returns the tangent of this number.
     *
@@ -221,7 +221,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `tan(this)`
     */
-  def tan: Complex = {
+  lazy val tan: Complex = {
     val exponential = (2 * I * this).exp
     val bottom = I * (exponential + 1)
     
@@ -238,7 +238,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `tan`^`-1`^`(this)`
     */
-  def atan: Complex = {
+  lazy val atan: Complex = {
     val iMult = I * this
     0.5 * I * ((1 - iMult).log - (1 + iMult).log)
   }
@@ -249,7 +249,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `sinh(this)`
     */
-  def sinh: Complex = -I * (I * this).sin
+  lazy val sinh: Complex = -I * (I * this).sin
   
   /** Returns the principal inverse hyperbolic sine of this number, that is, the number whose hyperbolic sine this is.
     *
@@ -257,7 +257,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `sinh`^`-1`^`(this)`
     */
-  def asinh: Complex = -I * (I * this).asin
+  lazy val asinh: Complex = -I * (I * this).asin
   
   /** Returns the hyperbolic cosine of this number.
     *
@@ -265,7 +265,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `cosh(this)`
     */
-  def cosh: Complex = (I * this).cos
+  lazy val cosh: Complex = (I * this).cos
   
   /** Returns the principal inverse hyperbolic cosine of this number, that is, the number whose hyperbolic
     * cosine this is.
@@ -274,7 +274,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `cosh`^`-1`^`(this)`
     */
-  def acosh: Complex = (this + (this + 1).sqrt * (this - 1).sqrt).log
+  lazy val acosh: Complex = (this + (this + 1).sqrt * (this - 1).sqrt).log
   
   /** Returns the hyperbolic tangent of this number.
     *
@@ -282,7 +282,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `tanh(this)`
     */
-  def tanh: Complex = -I * (I * this).tan
+  lazy val tanh: Complex = -I * (I * this).tan
   
   /** Returns the principal inverse hyperbolic tangent of this number, that is, the number whose hyperbolic
     * tangent this is.
@@ -291,7 +291,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `tanh`^`-1`^`(this)`
     */
-  def atanh: Complex = -I * (I * this).atan
+  lazy val atanh: Complex = -I * (I * this).atan
   
   /**
     * Returns a string representation of this complex number as it would be written mathematically.
@@ -327,7 +327,7 @@ case class Complex(re: Double, im: Double = 0) {
     * @return
     *         `re.isNaN || im.isNaN`
     */
-  def hasNaNPart: Boolean = re.isNaN || im.isNaN
+  lazy val hasNaNPart: Boolean = re.isNaN || im.isNaN
   
   private def round(v: Double)(implicit precision: Int): Double = if (v.isInfinite || v.isNaN) {
     v
