@@ -17,6 +17,10 @@ import scala.language.implicitConversions
   */
 case class Complex(re: Double, im: Double = 0) {
   
+  val isReal: Boolean = im == 0
+  
+  val isImaginary: Boolean = re == 0
+  
   /** Adds this complex number to another one and returns the result.
     *
     * This implements the formula: {{{(a + bi) + (c + di) = (a + c) + (b + d)i}}}
@@ -106,6 +110,8 @@ case class Complex(re: Double, im: Double = 0) {
     *         The absolute
     */
   lazy val abs: Double = math.sqrt(im * im + re * re)
+  
+  lazy val mod: Double = abs
   
   /** Calculates the argument, that is, the angle between the positive real axis and the point representing
     * this number on the complex plane. The result will be between `π` and `-π`.
