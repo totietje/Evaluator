@@ -3,8 +3,8 @@ package net.totietje.complex
 import net.totietje.complex.Complex._
 
 import scala.math.BigDecimal.RoundingMode
-
 import scala.language.implicitConversions
+import scala.math.Ordering
 
 /** A class which represents a complex number, that is, a number in the form `a + bi`,
   * where i is one of the two square roots of -1.
@@ -408,4 +408,41 @@ object Complex {
     *         `v` as a complex number
     */
   implicit def fromInt(v: Int): Complex = Complex(v)
+  
+  val LexicographicalOrdering: Ordering[Complex] = Ordering.by(unapply)
+  
+  val OrderingByModulus: Ordering[Complex] = Ordering.by(_.mod)
+  
+  trait ComplexOrdering extends Ordering[Complex] {
+    override def compare(x: Complex, y: Complex): Int = LexicographicalOrdering.compare(x, y)
+  }
+  
+  trait ComplexIsFractional extends Fractional[Complex] {
+    override def plus(x: Complex, y: Complex): Complex = x + y
+    
+    override def minus(x: Complex, y: Complex): Complex = x - y
+    
+    override def times(x: Complex, y: Complex): Complex = x * y
+    
+    override def div(x: Complex, y: Complex): Complex = x / y
+    
+    override def negate(x: Complex): Complex = -x
+    
+    override def fromInt(x: Int): Complex = Complex(x)
+    
+    override def toInt(x: Complex): Int = realOnly(x).toInt
+    
+    override def toLong(x: Complex): Long = realOnly(x).toLong
+    
+    override def toFloat(x: Complex): Float = realOnly(x).toFloat
+    
+    override def toDouble(x: Complex): Double = realOnly(x)
+    
+    private def realOnly(x: Complex): Double = {
+      require(x.isReal, "Imaginary part must be 0")
+      x.re
+    }
+  }
+  
+  implicit object ComplexIsFractional extends ComplexIsFractional with ComplexOrdering
 }
