@@ -43,7 +43,7 @@ case class Complex(re: Double, im: Double = 0) {
   
   /** Multiplies this complex number by another one and returns the result.
     *
-    * This implements the formula: {{{(a + bi) * (c + di) = (ac - bd) + (ad + bc)}}}
+    * This implements the formula: {{{(a + bi) * (c + di) = (ac - bd) + (ad + bc)i}}}
     * @param that
     *             The complex number to be multiplied with this one
     * @return
